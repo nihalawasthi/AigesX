@@ -1,6 +1,6 @@
 {
     "scan_summary": {
-        "generated_at": "2025-01-29T15:27:01.943855",
+        "generated_at": "2025-01-29T15:46:42.953187",
         "system_info": {
             "platform": "Windows",
             "version": "10.0.26100",
@@ -28,8 +28,8 @@
         },
         "critical_findings": [
             {
-                "id": "72309dcf-6373-4b51-9b59-577adc70804e",
-                "timestamp": "2025-01-29T15:25:49.172481",
+                "id": "d527d4b3-53db-4ddb-9c79-2dff269b8903",
+                "timestamp": "2025-01-29T15:45:22.698581",
                 "type": "BIOS_SECURITY",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -40,8 +40,8 @@
                 "cve_id": null
             },
             {
-                "id": "948131d9-3cf0-4e83-8083-2ce90d72b463",
-                "timestamp": "2025-01-29T15:25:51.351040",
+                "id": "cc2c7bd9-6fad-477d-900d-f237b3fcdce2",
+                "timestamp": "2025-01-29T15:45:24.792525",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -70,8 +70,8 @@
     "detailed_findings": {
         "vulnerabilities": [
             {
-                "id": "72309dcf-6373-4b51-9b59-577adc70804e",
-                "timestamp": "2025-01-29T15:25:49.172481",
+                "id": "d527d4b3-53db-4ddb-9c79-2dff269b8903",
+                "timestamp": "2025-01-29T15:45:22.698581",
                 "type": "BIOS_SECURITY",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -82,8 +82,8 @@
                 "cve_id": null
             },
             {
-                "id": "948131d9-3cf0-4e83-8083-2ce90d72b463",
-                "timestamp": "2025-01-29T15:25:51.351040",
+                "id": "cc2c7bd9-6fad-477d-900d-f237b3fcdce2",
+                "timestamp": "2025-01-29T15:45:24.792525",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -94,8 +94,8 @@
                 "cve_id": null
             },
             {
-                "id": "d82b966c-1266-4d24-b77b-d5ab804f1cb0",
-                "timestamp": "2025-01-29T15:25:51.351040",
+                "id": "4ec058a5-f2fc-4ec3-ba0f-284400a3353c",
+                "timestamp": "2025-01-29T15:45:24.792525",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "MEDIUM",
                 "severity_score": 2,
