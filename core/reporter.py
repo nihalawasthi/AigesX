@@ -5,10 +5,13 @@ import json
 import subprocess
 from .scanner import Scanner
 import platform
-
+import logging
 
 class Reporter:
     def __init__(self, vulnerabilities_found):
+        self.logger = logging.getLogger("Reporter")
+        self.logger.info("Initializing Reporter with %d vulnerabilities", len(vulnerabilities_found))
+        
         self.vulnerabilities_found = self.filter_duplicates(vulnerabilities_found)
         self.report_name = self.generate_timestamped_report_name()
         self.config_issues = []
@@ -16,6 +19,7 @@ class Reporter:
         
     def filter_duplicates(self, vulnerabilities):
         """Filter out duplicate vulnerability entries"""
+        self.logger.debug("Filtering duplicate vulnerabilities")
         if not vulnerabilities:
             return []
             
@@ -23,7 +27,6 @@ class Reporter:
         seen = set()
         
         for vuln in vulnerabilities:
-            # Create a tuple of key attributes to check for duplicates
             vuln_key = (
                 vuln.get('type', ''),
                 vuln.get('description', ''),
@@ -37,12 +40,55 @@ class Reporter:
                 seen.add(vuln_key)
                 unique_vulns.append(vuln)
         
+        self.logger.info("Filtered %d unique vulnerabilities", len(unique_vulns))
         return unique_vulns
 
     def generate_timestamped_report_name(self):
+        """Generate a timestamped report name"""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        return f"{timestamp}_report.json"
+        report_name = f"{timestamp}_report.json"
+        self.logger.info("Generated report name: %s", report_name)
+        return report_name
 
+    def generate_detailed_report(self):
+        """Generate comprehensive security report"""
+        self.logger.info("Generating detailed report: %s", self.report_name)
+        report_data = {
+            "scan_summary": {
+                "generated_at": datetime.datetime.now().isoformat(),
+                "system_info": {
+                    "platform": platform.system(),
+                    "version": platform.version(),
+                    "machine": platform.machine(),
+                    "processor": platform.processor(),
+                    "architecture": platform.architecture()[0]
+                },
+                "risk_score": self.calculate_risk_score(),
+                "total_vulnerabilities": len(self.vulnerabilities_found),
+                "unique_categories": len(set(v.get('type', '') for v in self.vulnerabilities_found))
+            },
+            "vulnerability_summary": {
+                "by_severity": self.summarize_by_severity(),
+                "by_category": self.summarize_by_category(),
+                "critical_findings": self.get_critical_findings()
+            },
+            "detailed_findings": {
+                "vulnerabilities": self.vulnerabilities_found,
+                "configuration_issues": self.config_issues,
+                "suspicious_activities": self.suspicious_traffic
+            },
+            "recommendations": self.generate_recommendations(),
+            "remediation_timeline": self.generate_remediation_timeline()
+        }
+
+        # Save report to file
+        with open(self.report_name, "w") as report_file:
+            json.dump(report_data, report_file, indent=4)
+
+        self.logger.info("Detailed report saved: %s", self.report_name)
+        print(f"Detailed report generated: {self.report_name}")
+        return report_data
+    
     def calculate_risk_score(self):
         """Calculate overall risk score based on findings"""
         score = 0
@@ -109,44 +155,7 @@ class Reporter:
             recommendations.append(rec)
         
         return recommendations
-
-    def generate_detailed_report(self):
-        """Generate comprehensive security report"""
-        report_data = {
-            "scan_summary": {
-                "generated_at": datetime.datetime.now().isoformat(),
-                "system_info": {
-                    "platform": platform.system(),
-                    "version": platform.version(),
-                    "machine": platform.machine(),
-                    "processor": platform.processor(),
-                    "architecture": platform.architecture()[0]
-                },
-                "risk_score": self.calculate_risk_score(),
-                "total_vulnerabilities": len(self.vulnerabilities_found),
-                "unique_categories": len(set(v.get('type', '') for v in self.vulnerabilities_found))
-            },
-            "vulnerability_summary": {
-                "by_severity": self.summarize_by_severity(),
-                "by_category": self.summarize_by_category(),
-                "critical_findings": self.get_critical_findings()
-            },
-            "detailed_findings": {
-                "vulnerabilities": self.vulnerabilities_found,
-                "configuration_issues": self.config_issues,
-                "suspicious_activities": self.suspicious_traffic
-            },
-            "recommendations": self.generate_recommendations(),
-            "remediation_timeline": self.generate_remediation_timeline()
-        }
-
-        # Save report to file
-        with open(self.report_name, "w") as report_file:
-            json.dump(report_data, report_file, indent=4)
-
-        print(f"Detailed report generated: {self.report_name}")
-        return report_data
-
+    
     def summarize_by_severity(self):
         """Summarize vulnerabilities by severity"""
         summary = {
