@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from core.scanner import Scanner, AutomatedScannerEngine, MLScanner, VulnerabilityFeatureExtractor
+from core.scanner import Scanner, AutomatedScannerEngine, MLScanner
 from core.reporter import Reporter
 import os
 import logging
@@ -19,6 +19,7 @@ logging.basicConfig(
 )
 
 colorama.init()
+
 class HackerStyle:
     spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
@@ -85,24 +86,16 @@ def scan_system():
         ("Checking security settings", 20)
     ]
     ProgressBar.show_progress(scan_tasks)
-    
-    scanner = Scanner()
-    ports = scanner.perform_port_scan()
-    protocol_info = scanner.analyze_protocols(ports)
-    HackerStyle.info("Protocol Analysis Results:")
-    for port, info in protocol_info.items():
-        HackerStyle.info(f"Port {port}: {info}")
-    HackerStyle.info("System scan completed.")
 
 def perform_deep_scan():
     HackerStyle.info("Performing detailed vulnerability scan...")
-    detailed_tasks = [
+    deep_scan_tasks = [
         ("Loading CVE data", 20),
         ("Performing advanced deep scan", 50),
         ("Running ML-based analysis", 20),
         ("Generating comprehensive report", 10)
     ]
-    ProgressBar.show_progress(detailed_tasks)
+    ProgressBar.show_progress(deep_scan_tasks)
 
 def main():
     try:
@@ -117,21 +110,24 @@ def main():
 
         scan_system()
 
-        automated_scanner = AutomatedScannerEngine()
-        ml_scanner = MLScanner()
-        reporter = Reporter([])
-
+        scanner = Scanner()
+        basic_vulnerabilities = scanner.scan_system()
         perform_deep_scan()
-
-        basic_vulnerabilities = Scanner().scan_system()
+        automated_scanner = AutomatedScannerEngine()
         deep_scan_results = automated_scanner.deep_system_scan()
-        features = ml_scanner.extract_features(deep_scan_results)
+
+        if isinstance(deep_scan_results, list):
+            deep_scan_vulnerabilities = deep_scan_results  # Assume it's a list of vulnerabilities
+        elif isinstance(deep_scan_results, dict):
+            deep_scan_vulnerabilities = deep_scan_results.get("vulnerabilities", [])
+        else:
+            deep_scan_vulnerabilities = []
+
+        ml_scanner = MLScanner()
+        features = ml_scanner.extract_features(deep_scan_vulnerabilities)
         ml_predictions = ml_scanner.predict_vulnerabilities(features)
 
-        all_vulnerabilities = basic_vulnerabilities
-        if isinstance(deep_scan_results, dict):
-            all_vulnerabilities.extend(deep_scan_results.get("vulnerabilities", []))
-        all_vulnerabilities.extend(ml_predictions)
+        all_vulnerabilities = basic_vulnerabilities + deep_scan_vulnerabilities + ml_predictions
 
         ReportFormatter.display_results(all_vulnerabilities)
         reporter = Reporter(all_vulnerabilities)

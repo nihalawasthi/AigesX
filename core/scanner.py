@@ -1013,19 +1013,6 @@ class VulnerabilityPattern:
             }
         }
 
-
-if __name__ == "__main__":
-    scanner = Scanner()
-    vulnerabilities_found = scanner.scan_system()
-    if vulnerabilities_found:
-        print("\nDetected vulnerabilities:")
-        for vuln in vulnerabilities_found:
-            print(
-                f"Detected CVE: {vuln['cve_id']}\nDescription: {vuln['description']}\nMatched Pattern: {vuln['matched_pattern']}\n"
-            )
-    else:
-        print("\nNo vulnerabilities detected.")
-
 class AutomatedScannerEngine:
     def __init__(self):
         self.patterns = VulnerabilityPattern()
@@ -1518,6 +1505,7 @@ class MLScanner:
             }
             for pred in predictions if pred > 0.5
         ]
+
 class VulnerabilityFeatureExtractor:
     def extract_features(self, scan_data):
         """Extract numerical features from scan data"""
@@ -1532,3 +1520,16 @@ class VulnerabilityFeatureExtractor:
         except Exception as e:
             print(f"Error extracting features: {e}")
         return np.array(features).reshape(1, -1) if features else None
+
+'''
+if __name__ == "__main__":
+    scanner = Scanner()
+    vulnerabilities_found = scanner.scan_system()
+    if vulnerabilities_found:
+        print("\nDetected vulnerabilities:")
+        for vuln in vulnerabilities_found:
+            print(
+                f"Detected CVE: {vuln['cve_id']}\nDescription: {vuln['description']}\nMatched Pattern: {vuln['matched_pattern']}\n"
+            )
+    else:
+        print("\nNo vulnerabilities detected.")'''

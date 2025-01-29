@@ -212,7 +212,7 @@ class Reporter:
             }
         }
 
-
+'''
 def test_environment():
     print("Testing for vulnerable ports and services...")
     scanner = Scanner()
@@ -222,4 +222,4 @@ def test_environment():
 
 
 if __name__ == "__main__":
-    test_environment()
+    test_environment()'''
