@@ -85,6 +85,13 @@ def scan_system():
         ("Checking security settings", 20)
     ]
     ProgressBar.show_progress(scan_tasks)
+    
+    scanner = Scanner()
+    ports = scanner.perform_port_scan()
+    protocol_info = scanner.analyze_protocols(ports)
+    HackerStyle.info("Protocol Analysis Results:")
+    for port, info in protocol_info.items():
+        HackerStyle.info(f"Port {port}: {info}")
     HackerStyle.info("System scan completed.")
 
 def perform_deep_scan():

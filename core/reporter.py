@@ -47,12 +47,10 @@ class Reporter:
         """Generate a timestamped report name"""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         report_name = f"{timestamp}_report.json"
-        self.logger.info("Generated report name: %s", report_name)
         return report_name
 
     def generate_detailed_report(self):
         """Generate comprehensive security report"""
-        self.logger.info("Generating detailed report: %s", self.report_name)
         report_data = {
             "scan_summary": {
                 "generated_at": datetime.datetime.now().isoformat(),

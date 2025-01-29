@@ -15,6 +15,7 @@ import win32api
 import re
 import uuid
 import datetime
+import requests
 import psutil
 import logging
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -107,6 +108,60 @@ class Scanner:
         
         self.system_ports = ports_in_use
         return ports_in_use
+
+    def analyze_protocols(self, ports):
+        """Analyze protocols running on open ports"""
+        self.logger.info("Analyzing protocols on open ports")
+        protocol_info = {}
+        for port in ports:
+            try:
+                if port == 80 or port == 443:
+                    protocol_info[port] = self.check_http_version(port)
+                elif port == 445:
+                    protocol_info[port] = self.check_smb_version(port)
+                else:
+                    protocol_info[port] = "Unknown protocol"
+            except Exception as e:
+                self.logger.error(f"Error analyzing port {port}: {e}")
+                protocol_info[port] = "Error"
+        return protocol_info
+
+    def check_http_version(self, port):
+        """Check HTTP version running on a port"""
+        self.logger.info(f"Checking HTTP version on port {port}")
+        try:
+            if port == 80:
+                url = "http://localhost"
+            elif port == 443:
+                url = "https://localhost"
+            else:
+                return "Not an HTTP port"
+            
+            response = requests.get(url, timeout=5)
+            return f"HTTP/{response.raw.version} ({response.status_code})"
+        except Exception as e:
+            self.logger.error(f"Error checking HTTP version on port {port}: {e}")
+            return "Unknown"
+
+    def check_smb_version(self, port):
+        """Check SMB version running on a port"""
+        self.logger.info(f"Checking SMB version on port {port}")
+        try:
+            if platform.system() == "Windows":
+                result = subprocess.run(
+                    ["powershell", "Get-SmbServerConfiguration"],
+                    capture_output=True,
+                    text=True
+                )
+                if result.returncode == 0:
+                    return "SMBv3"  # Placeholder for actual SMB version detection
+                else:
+                    return "Unknown SMB version"
+            else:
+                return "SMB not supported on this platform"
+        except Exception as e:
+            self.logger.error(f"Error checking SMB version on port {port}: {e}")
+            return "Unknown"
 
 
     def detect_network_services(self):
@@ -213,16 +268,10 @@ class Scanner:
         """Perform comprehensive system scanning"""
         print("Starting comprehensive system scan...")
         vulnerabilities = []
-        
-        # 1. BIOS/UEFI Security Checks
         bios_vulns = self.check_bios_security()
         vulnerabilities.extend(bios_vulns)
-        
-        # 2. Service Security Checks
         service_vulns = self.check_dangerous_services()
         vulnerabilities.extend(service_vulns)
-        
-        # 3. Driver Security Checks
         driver_vulns = self.check_driver_security()
         vulnerabilities.extend(driver_vulns)
         
@@ -789,11 +838,6 @@ class Scanner:
 
     def check_tpm_status(self):
         """Check TPM status"""
-        # Implementation needed
-        pass
-
-    def check_secure_boot(self):
-        """Check Secure Boot status"""
         # Implementation needed
         pass
 
@@ -1405,6 +1449,8 @@ class AutomatedScannerEngine:
 
 class MLScanner:
     def __init__(self):
+        self.logger = logging.getLogger("MLScanner")
+        self.logger.info("Initializing MLScanner")
         self.model = self.load_or_train_model()
         self.feature_extractor = self.initialize_feature_extractor()
         
@@ -1413,42 +1459,56 @@ class MLScanner:
         model_path = "models/vulnerability_model.joblib"
         try:
             if os.path.exists(model_path):
+                self.logger.info("Loading pre-trained model from %s", model_path)
                 return joblib.load(model_path)
             else:
+                self.logger.info("No pre-trained model found. Training a new model.")
                 return self.train_new_model()
         except Exception as e:
-            print(f"Error loading ML model: {e}")
+            self.logger.error("Error loading ML model: %s", e)
             return self.train_new_model()
             
     def train_new_model(self):
         """Train a new model if none exists"""
+        self.logger.info("Training new RandomForest model")
         model = RandomForestClassifier(n_estimators=100)
-        # Add training logic here if you have training data
+        
+        # Example training data (replace with real data)
+        X_train = np.array([[0, 0], [1, 1], [2, 2], [3, 3]])
+        y_train = np.array([0, 1, 0, 1])
+        
+        model.fit(X_train, y_train)
+        joblib.dump(model, "models/vulnerability_model.joblib")
+        self.logger.info("Model trained and saved to %s", "models/vulnerability_model.joblib")
         return model
             
     def initialize_feature_extractor(self):
         """Initialize feature extraction"""
+        self.logger.info("Initializing feature extractor")
         return VulnerabilityFeatureExtractor()
         
     def extract_features(self, scan_data):
         """Extract features from scan data for ML analysis"""
+        self.logger.info("Extracting features from scan data")
         if not self.feature_extractor:
             return []
         return self.feature_extractor.extract_features(scan_data)
         
     def predict_vulnerabilities(self, features):
         """Predict vulnerabilities using ML model"""
+        self.logger.info("Predicting vulnerabilities using ML model")
         if not features:
             return []
         try:
             predictions = self.model.predict(features)
             return self.process_predictions(predictions)
         except Exception as e:
-            print(f"Error in ML prediction: {e}")
+            self.logger.error("Error in ML prediction: %s", e)
             return []
             
     def process_predictions(self, predictions):
         """Process ML predictions into vulnerability reports"""
+        self.logger.info("Processing ML predictions")
         return [
             {
                 "type": "ML_DETECTION",
@@ -1458,7 +1518,6 @@ class MLScanner:
             }
             for pred in predictions if pred > 0.5
         ]
-
 class VulnerabilityFeatureExtractor:
     def extract_features(self, scan_data):
         """Extract numerical features from scan data"""
