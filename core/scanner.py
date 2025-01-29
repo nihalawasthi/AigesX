@@ -61,7 +61,17 @@ class Scanner:
         except Exception as e:
             self.logger.error("Error loading CVE patterns: %s", e)
             return []
-
+    
+    def load_port_service_map(self):
+        """Load port service map with proper path handling"""
+        try:
+            with open(self.port_service_map_file, 'r') as f:
+                print("Loading port-service mapping...")
+                return json.load(f)
+        except Exception as e:
+            print(f"Error loading port service map: {e}")
+            return {}
+        
     def perform_port_scan(self):
         """Scan listening ports on the system."""
         self.logger.info("Performing port scan")

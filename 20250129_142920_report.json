@@ -1,0 +1,119 @@
+{
+    "scan_summary": {
+        "generated_at": "2025-01-29T14:29:20.577961",
+        "system_info": {
+            "platform": "Windows",
+            "version": "10.0.26100",
+            "machine": "AMD64",
+            "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+            "architecture": "64bit"
+        },
+        "risk_score": 76.67,
+        "total_vulnerabilities": 3,
+        "unique_categories": 2
+    },
+    "vulnerability_summary": {
+        "by_severity": {
+            "CRITICAL": 0,
+            "HIGH": 2,
+            "MEDIUM": 1,
+            "LOW": 0
+        },
+        "by_category": {
+            "BIOS_SECURITY": 1,
+            "DANGEROUS_SERVICE": 2
+        },
+        "critical_findings": [
+            {
+                "id": "69ee7d2b-c696-4430-8292-835ef8cdd3f2",
+                "timestamp": "2025-01-29T14:27:53.915044",
+                "type": "BIOS_SECURITY",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Secure Boot is disabled",
+                "component": "BIOS/UEFI",
+                "details": null,
+                "recommendation": "Enable Secure Boot in BIOS/UEFI settings",
+                "cve_id": null
+            },
+            {
+                "id": "ee3339f5-ddef-47b1-975a-67975fb346d2",
+                "timestamp": "2025-01-29T14:27:56.080033",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Remote Registry service is enabled",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Disable Remote Registry service if not required",
+                "cve_id": null
+            }
+        ]
+    },
+    "detailed_findings": {
+        "vulnerabilities": [
+            {
+                "id": "69ee7d2b-c696-4430-8292-835ef8cdd3f2",
+                "timestamp": "2025-01-29T14:27:53.915044",
+                "type": "BIOS_SECURITY",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Secure Boot is disabled",
+                "component": "BIOS/UEFI",
+                "details": null,
+                "recommendation": "Enable Secure Boot in BIOS/UEFI settings",
+                "cve_id": null
+            },
+            {
+                "id": "ee3339f5-ddef-47b1-975a-67975fb346d2",
+                "timestamp": "2025-01-29T14:27:56.080033",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Remote Registry service is enabled",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Disable Remote Registry service if not required",
+                "cve_id": null
+            },
+            {
+                "id": "83c0cccf-84a6-48cb-acf0-b3e66fda3243",
+                "timestamp": "2025-01-29T14:27:56.080033",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "MEDIUM",
+                "severity_score": 2,
+                "description": "RPC service might be exposed",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Restrict RPC access if not needed",
+                "cve_id": null
+            }
+        ],
+        "configuration_issues": [],
+        "suspicious_activities": []
+    },
+    "recommendations": [
+        {
+            "category": "BIOS_SECURITY",
+            "severity": "HIGH",
+            "findings": 1,
+            "actions": []
+        },
+        {
+            "category": "DANGEROUS_SERVICE",
+            "severity": "HIGH",
+            "findings": 2,
+            "actions": []
+        }
+    ],
+    "remediation_timeline": {
+        "immediate": 2,
+        "short_term": 1,
+        "long_term": 0,
+        "suggested_timeline": {
+            "immediate": "Within 24 hours",
+            "short_term": "Within 1 week",
+            "long_term": "Within 1 month"
+        }
+    }
+}
