@@ -12,8 +12,13 @@ import sys
 from tabulate import tabulate
 import time
 
-colorama.init()
+logging.basicConfig(
+    filename='aigesx.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
+colorama.init()
 class HackerStyle:
     spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
@@ -134,9 +139,11 @@ def main():
             subprocess.run(["python", "public/server.py", reporter.report_name])
 
     except KeyboardInterrupt:
+        logging.error("Scan interrupted by user")
         HackerStyle.error("Scan interrupted by user")
         sys.exit(1)
     except Exception as e:
+        logging.error("Critical error: %s", str(e))
         HackerStyle.error(f"Critical error: {str(e)}")
         sys.exit(1)
 

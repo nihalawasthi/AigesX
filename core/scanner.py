@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import sys
 import os
 import json
@@ -15,12 +16,15 @@ import re
 import uuid
 import datetime
 import psutil
+import logging
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import cve_data.fetcher
 
-
 class Scanner:
     def __init__(self):
+        self.logger = logging.getLogger("Scanner")
+        self.logger.info("Initializing Scanner")
+        
         if getattr(sys, 'frozen', False):
             self.application_path = os.path.dirname(sys.executable)
         else:
@@ -48,29 +52,19 @@ class Scanner:
 
     def load_cve_patterns(self):
         """Load CVE patterns with proper path handling"""
+        self.logger.info("Loading CVE patterns from %s", self.patterns_file)
         try:
             with open(self.patterns_file, 'r') as f:
-                print("Loading CVE patterns...")
                 patterns = json.load(f)
-                print(f"Total CVE patterns loaded: {len(patterns)}")
+                self.logger.info("Loaded %d CVE patterns", len(patterns))
                 return patterns
         except Exception as e:
-            print(f"Error loading CVE patterns: {e}")
+            self.logger.error("Error loading CVE patterns: %s", e)
             return []
-
-    def load_port_service_map(self):
-        """Load port service map with proper path handling"""
-        try:
-            with open(self.port_service_map_file, 'r') as f:
-                print("Loading port-service mapping...")
-                return json.load(f)
-        except Exception as e:
-            print(f"Error loading port service map: {e}")
-            return {}
 
     def perform_port_scan(self):
         """Scan listening ports on the system."""
-        print("Performing port scan...")
+        self.logger.info("Performing port scan")
         ports_in_use = []
         try:
             if platform.system() == "Windows":
@@ -97,10 +91,9 @@ class Scanner:
                         port = int(match.group(2))
                         ports_in_use.append(port)
 
-            print(f"Ports in use: {ports_in_use}")
-            print("Port scan completed successfully.")
+            self.logger.info("Found %d open ports", len(ports_in_use))
         except Exception as e:
-            print(f"Error during port scan: {e}")
+            self.logger.error("Error during port scan: %s", e)
         
         self.system_ports = ports_in_use
         return ports_in_use
