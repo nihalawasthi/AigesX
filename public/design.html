@@ -619,16 +619,14 @@
                     const title = card.querySelector('.vuln-title')?.textContent.toLowerCase() || '';
                     const description = card.querySelector('.vuln-description')?.textContent.toLowerCase() || '';
 
-                    // Check if search term matches title or description
                     if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                        card.style.display = 'block'; // Show matching card
+                        card.style.display = 'block';
                     } else {
-                        card.style.display = 'none'; // Hide non-matching card
+                        card.style.display = 'none';
                     }
                 });
             };
 
-            // Trigger search on input and Enter key
             searchInput.addEventListener('input', performSearch);
             searchInput.addEventListener('keydown', function (event) {
                 if (event.key === 'Enter') performSearch();
@@ -647,7 +645,6 @@
                     return;
                 }
 
-                // Import jsPDF from the UMD module
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
@@ -725,25 +722,20 @@
             });
         }
 
-
-        // Load the report data
         loadReport();
     });
 
     async function loadReport() {
         try {
-            // Load the report data
             const response = await fetch('/20250124_142149_report.json');
             const report = await response.json();
 
-            // Update Risk Overview
             const riskScore = document.getElementById('riskScore');
             if (riskScore) riskScore.textContent = Math.round(report.scan_summary.risk_score);
 
             const lastScanTime = document.getElementById('lastScanTime');
             if (lastScanTime) lastScanTime.textContent = new Date(report.scan_summary.generated_at).toLocaleString();
 
-            // Update Quick Statistics
             const criticalCount = document.getElementById('criticalCount');
             if (criticalCount) criticalCount.textContent = report.vulnerability_summary.by_severity.CRITICAL;
 
@@ -756,7 +748,6 @@
             const lowCount = document.getElementById('lowCount');
             if (lowCount) lowCount.textContent = report.vulnerability_summary.by_severity.LOW;
 
-            // Update System Information
             const platformInfo = document.getElementById('platformInfo');
             if (platformInfo) platformInfo.textContent = `${report.scan_summary.system_info.platform}`;
 
@@ -768,10 +759,9 @@
             const architecture = document.getElementById('architecture');
             if (architecture) architecture.textContent = `${report.scan_summary.system_info.architecture}`;
 
-            // Update Vulnerability Grid
             const vulnGrid = document.getElementById('vulnGrid');
             if (vulnGrid) {
-                vulnGrid.innerHTML = ''; // Clear existing entries
+                vulnGrid.innerHTML = '';
                 report.detailed_findings.vulnerabilities.forEach(vuln => {
                     const vulnCard = `
                         <div class="vuln-card ${vuln.severity.toLowerCase()}">
@@ -801,7 +791,6 @@
                 });
             }
 
-            // Update Timeline Section
             const timelinePhases = document.getElementById('timelinePhases');
             if (timelinePhases) {
                 const timeline = report.remediation_timeline;
@@ -836,7 +825,6 @@
                 `;
             }
 
-            // Initialize Charts
             const severityChart = document.getElementById('severityChart');
             const categoryChart = document.getElementById('categoryChart');
             const remediationChart = document.getElementById('remediationChart');
@@ -847,7 +835,6 @@
 
         } catch (error) {
             console.error('Error loading report:', error);
-            // Use a more graceful error handling
             const errorMessage = document.createElement('div');
             errorMessage.className = 'error-message';
             errorMessage.textContent = 'Failed to load report data. Please try refreshing the page.';
@@ -856,7 +843,6 @@
     }
 
     function initializeCharts(report) {
-        // Severity Distribution Chart
         const severityData = report.vulnerability_summary.by_severity;
         const severityCtx = document.getElementById('severityChart').getContext('2d');
 
@@ -871,8 +857,8 @@
                         severityData.MEDIUM,
                         severityData.LOW
                     ],
-                    backgroundColor: ['#00ff00', '#66ff66', '#99ff99', '#33cc33'], // Hacker green shades
-                    borderColor: '#000', // White borders for better separation
+                    backgroundColor: ['#B60000', '#BF5400', '#E1DB12', '#00D306'],
+                    borderColor: '#fff',
                     borderWidth: 2
                 }]
             },
@@ -882,7 +868,7 @@
                 plugins: {
                     legend: {
                         position: 'left',
-                        align: 'start', // Moves legend slightly up
+                        align: 'start',
                         labels: {
                             color: '#aaa',
                             boxWidth: 20,
@@ -900,8 +886,8 @@
                         bottom: 20
                     }
                 },
-                cutout: '50%', // Makes it a donut chart
-                backgroundColor: '#000' // Dark background
+                cutout: '50%',
+                backgroundColor: '#000'
             }
         });
 
