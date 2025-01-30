@@ -1,0 +1,1877 @@
+{
+    "scan_summary": {
+        "generated_at": "2025-01-30T11:47:17.721295",
+        "system_info": {
+            "platform": "Windows",
+            "version": "10.0.26100",
+            "machine": "AMD64",
+            "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+            "architecture": "64bit"
+        },
+        "risk_score": 50.65,
+        "total_vulnerabilities": 248,
+        "unique_categories": 5
+    },
+    "vulnerability_summary": {
+        "by_severity": {
+            "CRITICAL": 1,
+            "HIGH": 3,
+            "MEDIUM": 244,
+            "LOW": 0
+        },
+        "by_category": {
+            "BIOS_SECURITY": 1,
+            "DANGEROUS_SERVICE": 2,
+            "SECURITY": 1,
+            "HARDWARE": 1,
+            "SOFTWARE": 243
+        },
+        "critical_findings": [
+            {
+                "id": "a688b153-9cd7-4504-a11f-8c518d24a40d",
+                "timestamp": "2025-01-30T11:45:55.638140",
+                "type": "BIOS_SECURITY",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Secure Boot is disabled",
+                "component": "BIOS/UEFI",
+                "details": null,
+                "recommendation": "Enable Secure Boot in BIOS/UEFI settings",
+                "cve_id": null
+            },
+            {
+                "id": "eca5af8c-a0d0-476e-8a5f-9315d5924358",
+                "timestamp": "2025-01-30T11:45:56.288035",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Remote Registry service is enabled",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Disable Remote Registry service if not required",
+                "cve_id": null
+            },
+            {
+                "type": "SECURITY",
+                "category": "ANTIVIRUS",
+                "severity": "CRITICAL",
+                "description": "Antivirus protection is disabled",
+                "priority_score": 4
+            },
+            {
+                "type": "HARDWARE",
+                "category": "MEMORY",
+                "severity": "HIGH",
+                "description": "Memory issue detected: None",
+                "priority_score": 3
+            }
+        ]
+    },
+    "detailed_findings": {
+        "vulnerabilities": [
+            {
+                "id": "a688b153-9cd7-4504-a11f-8c518d24a40d",
+                "timestamp": "2025-01-30T11:45:55.638140",
+                "type": "BIOS_SECURITY",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Secure Boot is disabled",
+                "component": "BIOS/UEFI",
+                "details": null,
+                "recommendation": "Enable Secure Boot in BIOS/UEFI settings",
+                "cve_id": null
+            },
+            {
+                "id": "eca5af8c-a0d0-476e-8a5f-9315d5924358",
+                "timestamp": "2025-01-30T11:45:56.288035",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "HIGH",
+                "severity_score": 3,
+                "description": "Remote Registry service is enabled",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Disable Remote Registry service if not required",
+                "cve_id": null
+            },
+            {
+                "id": "d4f235de-ccf7-4591-a3be-ea0ffe3552ba",
+                "timestamp": "2025-01-30T11:45:56.288035",
+                "type": "DANGEROUS_SERVICE",
+                "severity": "MEDIUM",
+                "severity_score": 2,
+                "description": "RPC service might be exposed",
+                "component": "Services",
+                "details": null,
+                "recommendation": "Restrict RPC access if not needed",
+                "cve_id": null
+            },
+            {
+                "type": "SECURITY",
+                "category": "ANTIVIRUS",
+                "severity": "CRITICAL",
+                "description": "Antivirus protection is disabled",
+                "priority_score": 4
+            },
+            {
+                "type": "HARDWARE",
+                "category": "MEMORY",
+                "severity": "HIGH",
+                "description": "Memory issue detected: None",
+                "priority_score": 3
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: 1394ohci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: 3ware - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AcpiDev - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: acpipagr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AcpiPmi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: acpitime - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Acx01000 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ADP80XX - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AmdK8 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: amdsata - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: amdsbs - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: amdxata - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AppID - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AppleSSD - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: applockerfltr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: arcsas - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: AsyncMac - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: atapi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: b06bdrv - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: bcmfn2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthA2dp - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthEnum - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthHFAud - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthHFEnum - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthLEEnum - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthMini - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BTHMODEM - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: BthPan - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: bttflt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: buttonconverter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: cdfs - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: cht4iscsi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: cht4vbd - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: circlass - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: cnghwassist - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: devmap - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: DisplayMux - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: dmvsc - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: drmkaud - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: DroidCam - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: DroidCamVideo - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: droidvcam0_aud0 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: droidvcam0_vid0 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ebdrv - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ebdrv0 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: EhStorTcgDrv - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ErrDev - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ExecutionContext - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: fdc - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Filetrace - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: flpydisk - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: FsDepends - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: gencounter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: genericusbfn - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: GenPass - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HdAudAddService - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HidBatt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HidBth - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hidinterrupt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HidIr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hidspi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HidSpiCx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hnswfpdriver - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HpSAMD - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Hsp - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hvcrash - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HwNClx0101 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hwpolicy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: hyperkbd - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: HyperVideo - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: I3CHost - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iagpio - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iai2c - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_GPIO2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_GPIO2_BXT_P - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_GPIO2_CNL - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_GPIO2_GLK - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_I2C - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_I2C_BXT_P - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_I2C_CNL - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSS2i_I2C_GLK - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSSi_GPIO - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaLPSSi_I2C - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaStorAVC - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iaStorV - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ibbus - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: IndirectKmd - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: intelide - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: intelpmax - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: intelppm - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: IpFilterDriver - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: IPMIDRV - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: IPNAT - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: IPT - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iriuna0 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: isapnp - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: iScsiPrt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ItSas35i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: kdnic_legacy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: l1vhlwf - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: l2bridge - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: LSI_SAS - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: LSI_SAS2i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: LSI_SAS3i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mausbhost - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mausbip - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MbbCx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: megasas2i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: megasas35i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: megasr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Microsoft_Bluetooth_AvrcpTransport - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mlx4_bus - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Modem - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mpi3drvi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MsBridge - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mshidumdf - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MSKSSRV - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MSPCLOCK - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MSPQM - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MsQuic - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MsQuicPrev - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MsRPC - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: MSTEE - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: mvumis - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ndfltr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NdisImPlatform - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ndiswanlegacy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NDKPerf - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NDKPing - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NetAdapterCx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: netvsc - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NetworkPrivacyPolicy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: nvdimm - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: nvmedisk - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: nvraid - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: nvstor - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Parport - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: passthruparser - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: pciide - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: pcmcia - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: percsas2i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: percsas3i - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: PktMon - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: PktMonApi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: PlutonHeci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: PlutonHsp2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: pmem - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: PNPMEM - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: portcfg - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Processor - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: pvhdparser - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: pvscsi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Ramdisk - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RasAcd - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RDPDR - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ReFS - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ReFSv1 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RFCOMM - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: rhproxy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: s3cap - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: sbp2port - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: scfilter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: scmbus - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: sdbus - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: sdstor - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SerCx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SerCx2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Serenum - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Serial - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: sermouse - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: sfloppy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SgrmAgent - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SiSRaid2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SiSRaid4 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: SmartSAMD - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: spaceparser - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: stexstor - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: storflt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: storufs - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: storvsc - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Tcpip6 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: terminpt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: TsUsbFlt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: TsUsbGD - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: tunnel - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UASPStor - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UcmCx0101 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UcmTcpciCx0101 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UcmUcsiAcpiClient - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UcmUcsiCx0101 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UdeCx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: udfs - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Ufx01000 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UfxChipidea - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ufxsynopsys - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UmPass - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UrsChipidea - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UrsCx01000 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: UrsSynopsys - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Usb4DeviceRouter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Usb4HostRouter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbaudio - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbaudio2 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbcir - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbehci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbhub - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbohci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbprint - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbrndis6 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbser - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: USBSTOR - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: usbuhci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VerifierExt - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vhdmp - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vhdparser - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vhf - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VirtualRender - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vmbus - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VMBusHID - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vmbusproxy - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vmgid - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VMSVSF - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VMSVSP - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vpci - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: vsmraid - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: VSTXRAID - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WacomPen - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: wanarpv6 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WdBoot - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WdmCompanionFilter - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Wificx - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WIMMount - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WinAccelCx0101 - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WinI3C - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WinMad - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WinNat - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WinVerbs - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WpdUpFltr - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ws2ifsl - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: WudfPf - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: xboxgip - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: xinputhid - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: logi_lamparray - Stopped",
+                "priority_score": 2
+            }
+        ],
+        "configuration_issues": [],
+        "suspicious_activities": []
+    },
+    "recommendations": [
+        {
+            "category": "BIOS_SECURITY",
+            "severity": "HIGH",
+            "findings": 1,
+            "actions": []
+        },
+        {
+            "category": "DANGEROUS_SERVICE",
+            "severity": "HIGH",
+            "findings": 2,
+            "actions": []
+        },
+        {
+            "category": "SECURITY",
+            "severity": "CRITICAL",
+            "findings": 1,
+            "actions": []
+        },
+        {
+            "category": "HARDWARE",
+            "severity": "HIGH",
+            "findings": 1,
+            "actions": [
+                "Update all hardware drivers to latest versions",
+                "Monitor system temperatures and performance",
+                "Consider hardware upgrades for critical components"
+            ]
+        },
+        {
+            "category": "SOFTWARE",
+            "severity": "MEDIUM",
+            "findings": 243,
+            "actions": [
+                "Install all pending security updates",
+                "Remove or update vulnerable software versions",
+                "Review and adjust software security settings"
+            ]
+        }
+    ],
+    "remediation_timeline": {
+        "immediate": 4,
+        "short_term": 244,
+        "long_term": 0,
+        "suggested_timeline": {
+            "immediate": "Within 24 hours",
+            "short_term": "Within 1 week",
+            "long_term": "Within 1 month"
+        }
+    }
+}
