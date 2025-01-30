@@ -117,7 +117,7 @@ def main():
         deep_scan_results = automated_scanner.deep_system_scan()
 
         if isinstance(deep_scan_results, list):
-            deep_scan_vulnerabilities = deep_scan_results  # Assume it's a list of vulnerabilities
+            deep_scan_vulnerabilities = deep_scan_results
         elif isinstance(deep_scan_results, dict):
             deep_scan_vulnerabilities = deep_scan_results.get("vulnerabilities", [])
         else:

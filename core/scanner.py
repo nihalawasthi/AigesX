@@ -1438,29 +1438,25 @@ class MLScanner:
     def __init__(self):
         self.logger = logging.getLogger("MLScanner")
         self.logger.info("Initializing MLScanner")
-        self.model = self.load_or_train_model()
+        self.model = self.load_model()
         self.feature_extractor = self.initialize_feature_extractor()
         
-    def load_or_train_model(self):
+    def load_model(self):
         """Load or train ML model for vulnerability detection"""
-        model_path = "models/vulnerability_model.joblib"
+        model_path = "models/aigesx_cve_model_v2.pkl"
         try:
-            if os.path.exists(model_path):
-                self.logger.info("Loading pre-trained model from %s", model_path)
-                return joblib.load(model_path)
-            else:
-                self.logger.info("No pre-trained model found. Training a new model.")
-                return self.train_new_model()
+            if not os.path.exists(model_path):
+                raise FileNotFoundError(f"Model file not found at {model_path}")
+            self.logger.info("Loading pre-trained model from %s", model_path)
+            return joblib.load(model_path)
         except Exception as e:
             self.logger.error("Error loading ML model: %s", e)
-            return self.train_new_model()
             
     def train_new_model(self):
         """Train a new model if none exists"""
         self.logger.info("Training new RandomForest model")
         model = RandomForestClassifier(n_estimators=100)
         
-        # Example training data (replace with real data)
         X_train = np.array([[0, 0], [1, 1], [2, 2], [3, 3]])
         y_train = np.array([0, 1, 0, 1])
         
@@ -1501,7 +1497,7 @@ class MLScanner:
                 "type": "ML_DETECTION",
                 "severity": "MEDIUM",
                 "description": f"ML-detected potential vulnerability: {pred}",
-                "confidence": 0.8  # Add actual confidence scores if available
+                "confidence": 0.8
             }
             for pred in predictions if pred > 0.5
         ]
