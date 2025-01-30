@@ -1,4 +1,4 @@
 aigesx.log
-core/__pycache__/
-cve_data/__pycache__/
-cve_data/NVD/
+core/__pycache__/*
+cve_data/__pycache__/*
+cve_data/NVD/*.json
