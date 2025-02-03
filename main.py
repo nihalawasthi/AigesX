@@ -11,7 +11,6 @@ from tqdm import tqdm
 import sys
 from tabulate import tabulate
 import time
-import threading
 
 logging.basicConfig(
     filename='aigesx.log',
@@ -22,6 +21,7 @@ logging.basicConfig(
 colorama.init()
 
 class HackerStyle:
+    spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
     @staticmethod
     def print(text, end="\n"):
@@ -76,21 +76,7 @@ class ReportFormatter:
         HackerStyle.info("Vulnerabilities Found:")
         print(f"\n{Fore.YELLOW}{formatted_table}{Style.RESET_ALL}\n")
 
-def loader():
-    """Display a loading spinner"""
-    while not stop_loader:
-        spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
-        for char in spinner:
-            sys.stdout.write(f"\r{char}")
-            sys.stdout.flush()
-            time.sleep(0.1)
-
 def scan_system():
-    global stop_loader
-    stop_loader = False
-    loader_thread = threading.Thread(target=loader)
-    loader_thread.start()
-
     HackerStyle.info("Starting system scan...")
     scan_tasks = [
         ("Initializing Scanner", 10),
@@ -101,16 +87,7 @@ def scan_system():
     ]
     ProgressBar.show_progress(scan_tasks)
 
-    stop_loader = True
-    loader_thread.join()
-    sys.stdout.write("\rDone!\n")
-
 def perform_deep_scan():
-    global stop_loader
-    stop_loader = False
-    loader_thread = threading.Thread(target=loader)
-    loader_thread.start()
-
     HackerStyle.info("Performing detailed vulnerability scan...")
     deep_scan_tasks = [
         ("Loading CVE data", 20),
@@ -119,10 +96,6 @@ def perform_deep_scan():
         ("Generating comprehensive report", 10)
     ]
     ProgressBar.show_progress(deep_scan_tasks)
-
-    stop_loader = True
-    loader_thread.join()
-    sys.stdout.write("\rDone!\n")
 
 def main():
     try:
