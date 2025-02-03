@@ -1,6 +1,6 @@
 {
     "scan_summary": {
-        "generated_at": "2025-01-31T15:16:33.228730",
+        "generated_at": "2025-02-03T10:40:13.137385",
         "system_info": {
             "platform": "Windows",
             "version": "10.0.26100",
@@ -8,15 +8,15 @@
             "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
             "architecture": "64bit"
         },
-        "risk_score": 50.64,
-        "total_vulnerabilities": 249,
+        "risk_score": 50.62,
+        "total_vulnerabilities": 257,
         "unique_categories": 5
     },
     "vulnerability_summary": {
         "by_severity": {
             "CRITICAL": 1,
             "HIGH": 3,
-            "MEDIUM": 245,
+            "MEDIUM": 253,
             "LOW": 0
         },
         "by_category": {
@@ -24,12 +24,12 @@
             "DANGEROUS_SERVICE": 2,
             "SECURITY": 1,
             "HARDWARE": 1,
-            "SOFTWARE": 244
+            "SOFTWARE": 252
         },
         "critical_findings": [
             {
-                "id": "f2bbef03-eeab-49f5-9c0e-859aa9c41db9",
-                "timestamp": "2025-01-31T15:14:05.358992",
+                "id": "07868f2a-531e-46fa-97a5-512b82594921",
+                "timestamp": "2025-02-03T10:38:07.017205",
                 "type": "BIOS_SECURITY",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -40,8 +40,8 @@
                 "cve_id": null
             },
             {
-                "id": "4c581307-77e9-4f33-bda7-c43d37b501fb",
-                "timestamp": "2025-01-31T15:14:06.379623",
+                "id": "f52c136e-0363-4d7b-8664-601a2ff00c17",
+                "timestamp": "2025-02-03T10:38:08.044841",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -70,8 +70,8 @@
     "detailed_findings": {
         "vulnerabilities": [
             {
-                "id": "f2bbef03-eeab-49f5-9c0e-859aa9c41db9",
-                "timestamp": "2025-01-31T15:14:05.358992",
+                "id": "07868f2a-531e-46fa-97a5-512b82594921",
+                "timestamp": "2025-02-03T10:38:07.017205",
                 "type": "BIOS_SECURITY",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -82,8 +82,8 @@
                 "cve_id": null
             },
             {
-                "id": "4c581307-77e9-4f33-bda7-c43d37b501fb",
-                "timestamp": "2025-01-31T15:14:06.379623",
+                "id": "f52c136e-0363-4d7b-8664-601a2ff00c17",
+                "timestamp": "2025-02-03T10:38:08.044841",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "HIGH",
                 "severity_score": 3,
@@ -94,8 +94,8 @@
                 "cve_id": null
             },
             {
-                "id": "5a48882f-3dca-46f3-b771-68defa7c8139",
-                "timestamp": "2025-01-31T15:14:06.379623",
+                "id": "b5f5c717-70d3-4035-9636-742942b13d44",
+                "timestamp": "2025-02-03T10:38:08.044841",
                 "type": "DANGEROUS_SERVICE",
                 "severity": "MEDIUM",
                 "severity_score": 2,
@@ -453,6 +453,13 @@
                 "category": "DRIVER",
                 "severity": "MEDIUM",
                 "description": "Driver issue: ExecutionContext - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: exfat - Stopped",
                 "priority_score": 2
             },
             {
@@ -935,6 +942,13 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
+                "description": "Driver issue: MRxDAV - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
                 "description": "Driver issue: MsBridge - Stopped",
                 "priority_score": 2
             },
@@ -1019,6 +1033,20 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
+                "description": "Driver issue: NdisTapi - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: NdisWan - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
                 "description": "Driver issue: ndiswanlegacy - Stopped",
                 "priority_score": 2
             },
@@ -1034,6 +1062,13 @@
                 "category": "DRIVER",
                 "severity": "MEDIUM",
                 "description": "Driver issue: NDKPing - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: ndproxy - Stopped",
                 "priority_score": 2
             },
             {
@@ -1180,6 +1215,13 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
+                "description": "Driver issue: PptpMiniport - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
                 "description": "Driver issue: Processor - Stopped",
                 "priority_score": 2
             },
@@ -1201,6 +1243,13 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
+                "description": "Driver issue: QWAVEdrv - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
                 "description": "Driver issue: Ramdisk - Stopped",
                 "priority_score": 2
             },
@@ -1209,6 +1258,34 @@
                 "category": "DRIVER",
                 "severity": "MEDIUM",
                 "description": "Driver issue: RasAcd - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RasAgileVpn - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: Rasl2tp - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RasPppoe - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
+                "description": "Driver issue: RasSstp - Stopped",
                 "priority_score": 2
             },
             {
@@ -1439,28 +1516,7 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
-                "description": "Driver issue: UcmCx0101 - Stopped",
-                "priority_score": 2
-            },
-            {
-                "type": "SOFTWARE",
-                "category": "DRIVER",
-                "severity": "MEDIUM",
                 "description": "Driver issue: UcmTcpciCx0101 - Stopped",
-                "priority_score": 2
-            },
-            {
-                "type": "SOFTWARE",
-                "category": "DRIVER",
-                "severity": "MEDIUM",
-                "description": "Driver issue: UcmUcsiAcpiClient - Stopped",
-                "priority_score": 2
-            },
-            {
-                "type": "SOFTWARE",
-                "category": "DRIVER",
-                "severity": "MEDIUM",
-                "description": "Driver issue: UcmUcsiCx0101 - Stopped",
                 "priority_score": 2
             },
             {
@@ -1754,6 +1810,13 @@
                 "type": "SOFTWARE",
                 "category": "DRIVER",
                 "severity": "MEDIUM",
+                "description": "Driver issue: WIMMount - Stopped",
+                "priority_score": 2
+            },
+            {
+                "type": "SOFTWARE",
+                "category": "DRIVER",
+                "severity": "MEDIUM",
                 "description": "Driver issue: WinAccelCx0101 - Stopped",
                 "priority_score": 2
             },
@@ -1819,13 +1882,6 @@
                 "severity": "MEDIUM",
                 "description": "Driver issue: xinputhid - Stopped",
                 "priority_score": 2
-            },
-            {
-                "type": "SOFTWARE",
-                "category": "DRIVER",
-                "severity": "MEDIUM",
-                "description": "Driver issue: logi_lamparray - Stopped",
-                "priority_score": 2
             }
         ],
         "configuration_issues": [],
@@ -1863,7 +1919,7 @@
         {
             "category": "SOFTWARE",
             "severity": "MEDIUM",
-            "findings": 244,
+            "findings": 252,
             "actions": [
                 "Install all pending security updates",
                 "Remove or update vulnerable software versions",
@@ -1873,7 +1929,7 @@
     ],
     "remediation_timeline": {
         "immediate": 4,
-        "short_term": 245,
+        "short_term": 253,
         "long_term": 0,
         "suggested_timeline": {
             "immediate": "Within 24 hours",
