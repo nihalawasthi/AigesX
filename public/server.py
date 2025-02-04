@@ -34,7 +34,7 @@ class ReportRequestHandler(SimpleHTTPRequestHandler):
                 return
 
         if self.path == '/':
-            self.path = '/design.html'
+            self.path = '/design1.html'
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         

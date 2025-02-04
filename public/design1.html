@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{project.meta.ogDescription}}">
+    <meta name="theme-color" content="#ffffff">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="{{project.meta.robotsMeta}}">
+
+    <title>AigesX</title>
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        as="style">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f8f8f8',
+                            100: '#e8e8e8',
+                            200: '#d3d3d3',
+                            300: '#a3a3a3',
+                            400: '#737373',
+                            500: '#525252',
+                            600: '#404040',
+                            700: '#262626',
+                            800: '#171717',
+                            900: '#0a0a0a',
+                            950: '#030303',
+                        },
+                        secondary: {
+                            50: '#f8f8f8',
+                            100: '#e8e8e8',
+                            200: '#d3d3d3',
+                            300: '#a3a3a3',
+                            400: '#737373',
+                            500: '#525252',
+                            600: '#404040',
+                            700: '#262626',
+                            800: '#171717',
+                            900: '#0a0a0a',
+                            950: '#030303',
+                        },
+                        accent: {
+                            50: '#f8f8f8',
+                            100: '#e8e8e8',
+                            200: '#d3d3d3',
+                            300: '#a3a3a3',
+                            400: '#737373',
+                            500: '#525252',
+                            600: '#404040',
+                            700: '#262626',
+                            800: '#171717',
+                            900: '#0a0a0a',
+                            950: '#030303',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        heading: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '22': '5.5rem',
+                        '30': '7.5rem',
+                    },
+                    maxWidth: {
+                        '8xl': '88rem',
+                        '9xl': '96rem',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'fade-out': 'fadeOut 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'slide-down': 'slideDown 0.5s ease-out',
+                        'slide-left': 'slideLeft 0.5s ease-out',
+                        'slide-right': 'slideRight 0.5s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                        'scale-out': 'scaleOut 0.5s ease-out',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeOut: {
+                            '0%': { opacity: '1' },
+                            '100%': { opacity: '0' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideLeft: {
+                            '0%': { transform: 'translateX(20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideRight: {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        scaleOut: {
+                            '0%': { transform: 'scale(1.1)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                    aspectRatio: {
+                        'portrait': '3/4',
+                        'landscape': '4/3',
+                        'ultrawide': '21/9',
+                    },
+                },
+            },
+            variants: {
+                extend: {
+                    opacity: ['disabled'],
+                    cursor: ['disabled'],
+                    backgroundColor: ['active', 'disabled'],
+                    textColor: ['active', 'disabled'],
+                },
+            },
+        }
+    </script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/styles1.css">
+</head>
+
+<body class="antialiased text-gray-800 min-h-screen flex flex-col">
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+        Skip to main content
+    </a>
+
+    <header class="relative z-50 bg-white dark:bg-gray-900">
+    </header>
+
+    <main id="main-content" class="flex-1 relative ">
+    </main>
+</body>
+
+</html>
+<element id="12388823-a1ef-41f2-a26d-8edb8e50be39" data-section-id="12388823-a1ef-41f2-a26d-8edb8e50be39">
+
+    <htmlCode>
+        <div id="root">
+            <section id="Layout" class="min-h-screen bg-[#E5E7EB]">
+                <div class="flex">
+                    <nav
+                        class="sticky top-0 h-screen w-64 bg-white border-r border-neutral-200/20 flex-shrink-0 hidden lg:block">
+                        <div class="p-4 border-b border-neutral-200/20">
+                            <h1 class="text-xl font-bold">Aiges X</h1>
+                            <span class="text-sm text-neutral-500">v0.0</span>
+                        </div>
+
+                        <div class="py-4">
+                            <a href="#Dashboard"
+                                class="flex items-center px-4 py-2 text-neutral-600 hover:bg-neutral-100 active">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                                Dashboard
+                            </a>
+                            <a href="#VulnerabilityList"
+                                class="flex items-center px-4 py-2 text-neutral-600 hover:bg-neutral-100">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                Vulnerability
+                            </a>
+                            <a href="#Analytics"
+                                class="flex items-center px-4 py-2 text-neutral-600 hover:bg-neutral-100">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                                Analytics
+                            </a>
+                        </div>
+
+                        <div class="absolute bottom-0 w-full p-4 border-t border-neutral-200/20">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-neutral-200"><img src="public\assets\logo.png" alt=""> </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium">nihalawasthi498@gmail.com </p>
+                                    <button class="text-sm text-neutral-500 hover:text-neutral-700">Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <main class="flex-1 overflow-auto">
+                        <header class="sticky top-0 z-10 bg-white border-b border-neutral-200/20 px-4 py-3">
+                            <div class="flex items-center justify-between">
+                                <button class="lg:hidden p-2 rounded-lg hover:bg-neutral-100" id="menuToggle">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                                    </svg>
+                                </button>
+
+                                <div class="flex-1 px-4">
+                                    <input type="search" placeholder="Search..."
+                                        class="w-full max-w-md px-4 py-2 rounded-lg border border-neutral-200/20 bg-neutral-50">
+                                </div>
+
+                                <div class="flex items-center space-x-4">
+                                    <button class="p-2 rounded-lg hover:bg-neutral-100">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+                                    <button class="w-8 h-8 rounded-full bg-neutral-200"></button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <MountPoint>
+</element>
+<element id="c55aea2c-e16c-4dbe-97e7-c5defd3300b0" data-section-id="c55aea2c-e16c-4dbe-97e7-c5defd3300b0">
+
+
+    <htmlcode id="el-8o1ltag5">
+        <div id="root">
+            <section id="Summary" class="p-6">
+                <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4" id="el-449pdlhf">
+                    <div class="flex items-center p-4 bg-white border border-neutral-200/20 rounded-lg"
+                        id="el-dldcrztl">
+                        <div class="p-3 rounded-full bg-red-100" id="el-exkdzszw">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                id="el-l9lhtgfi">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                    id="el-3p8dj3pn"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4" id="el-li5vmspy">
+                            <p class="mb-2 text-sm font-medium text-neutral-600" id="el-3hq53j71">Critical</p>
+                            <p class="text-lg font-semibold text-neutral-700" id="criticalCount"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white border border-neutral-200/20 rounded-lg"
+                        id="el-ur6r56jl">
+                        <div class="p-3 rounded-full bg-orange-100" id="el-fxepiu0p">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                id="el-2olmy5td">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" id="el-d657x5ux"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4" id="el-6x9019y2">
+                            <p class="mb-2 text-sm font-medium text-neutral-600" id="el-l5mhvunw">High</p>
+                            <p class="text-lg font-semibold text-neutral-700" id="highCount"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white border border-neutral-200/20 rounded-lg"
+                        id="el-4m7y60lv">
+                        <div class="p-3 rounded-full bg-yellow-100" id="el-yzi05svk">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                id="el-jq246fz0">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" id="el-1tq5kgob"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4" id="el-p6mia355">
+                            <p class="mb-2 text-sm font-medium text-neutral-600" id="el-6tovg1ad">Medium</p>
+                            <p class="text-lg font-semibold text-neutral-700" id="mediumCount"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white border border-neutral-200/20 rounded-lg"
+                        id="el-a1lcihzr">
+                        <div class="p-3 rounded-full bg-blue-100" id="el-me457yag">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                id="el-t84ej9y3">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" id="el-33zfqv1n">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="ml-4" id="el-hhe3j1k2">
+                            <p class="mb-2 text-sm font-medium text-neutral-600" id="el-b4ldsebc">Low</p>
+                            <p class="text-lg font-semibold text-neutral-700" id="lowCount"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid gap-6 mb-8 md:grid-cols-2" id="el-sie90ex7">
+                    <div class="bg-white p-6 border border-neutral-200/20 rounded-lg" id="el-vh6gl5p3">
+                        <div class="flex justify-between items-center mb-4" id="el-798oozpg">
+                            <h3 class="text-lg font-semibold text-neutral-700" id="el-ddn9kqsb">System Information</h3>
+                        </div>
+                        <div class="grid gap-4" id="el-7g91z9v9">
+                            <div class="flex justify-between border-b border-neutral-200/20 pb-2" id="el-r1u67y7w">
+                                <span class="text-neutral-600" id="el-ol3unn2k">Platform</span>
+                                <span class="font-medium" id="platformInfo"></span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-200/20 pb-2" id="el-togwz59n">
+                                <span class="text-neutral-600" id="el-8q0to0zm">Version</span>
+                                <span class="font-medium" id="Version"></span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-200/20 pb-2" id="el-c1gzkpnr">
+                                <span class="text-neutral-600" id="el-kjjihl8u">Processor</span>
+                                <span class="font-medium" id="processor"></span>
+                            </div>
+                            <div class="flex justify-between" id="el-ssnpdcw7">
+                                <span class="text-neutral-600" id="el-1jjhy92l">Architecture</span>
+                                <span class="font-medium" id="architecture"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 border border-neutral-200/20 rounded-lg" id="el-ky6g7zj7">
+                        <div class="flex justify-between items-center mb-4" id="el-nuhhexwt">
+                            <h3 class="text-lg font-semibold text-neutral-700" id="el-4ahamwvv">Risk Score</h3>
+                        </div>
+                        <div class="flex items-center justify-center" id="el-qka5fm9t">
+                            <div class="relative" id="el-udrpafbc">
+                                <div class="flex items-center justify-center w-32 h-32 rounded-full border-8 border-red-500"
+                                    id="el-km3w5ifv">
+                                    <span class="text-3xl font-bold text-neutral-700" id="riskScore">85</span>
+                                </div>
+                                <span
+                                    class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-neutral-600"
+                                    id="el-80a5t4n1">{Risk}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+    </htmlcode>
+</element>
+<element id="9cab154c-ca1e-4631-99ad-5478aa83ddc6" data-section-id="9cab154c-ca1e-4631-99ad-5478aa83ddc6">
+
+    <htmlCode>
+        <div id="root">
+            <section id="VulnerabilityList" class="p-6">
+                <div class="bg-white border border-neutral-200/20 rounded-lg">
+                    <div class="p-6 border-b border-neutral-200/20">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-neutral-700">Vulnerabilities</h2>
+                            <div class="flex space-x-2">
+                                <button
+                                    data-severity="all"
+                                    class="filter-btn px-3 py-1 text-sm font-medium rounded-full bg-neutral-100 text-neutral-700 hover:bg-neutral-200">All
+                                    </button>
+                                <button
+                                    data-severity="critical"
+                                    class="filter-btn px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-700 hover:bg-red-200">Critical
+                                    </button>
+                                <button
+                                    data-severity="high"
+                                    class="filter-btn px-3 py-1 text-sm font-medium rounded-full bg-orange-100 text-orange-700 hover:bg-orange-200">High
+                                    </button>
+                                <button
+                                    data-severity="medium"
+                                    class="filter-btn px-3 py-1 text-sm font-medium rounded-full bg-yellow-100 text-yellow-700 hover:bg-yellow-200">Medium
+                                    </button>
+                                <button
+                                    data-severity="low" 
+                                    class="filter-btn px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200">Low
+                                    </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <input id="vulnsearch" type="search" class="w-full pl-10 pr-4 py-2 border border-neutral-200/20 rounded-lg"
+                                placeholder="Search vulnerabilities...">
+                            <svg class="absolute left-3 top-2.5 w-5 h-5 text-neutral-400" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div id="vuln-list" class="p-6 space-y-4">
+                        <!-- Vulnerabilities will be loaded here -->
+                    </div>
+
+                    <div class="px-6 py-4 border-t border-neutral-200/20">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <button class="px-3 py-1 border border-neutral-200/20 rounded disabled:opacity-50"
+                                    disabled>Previous</button>
+                                <span class="text-sm text-neutral-600">Page 1 of 5</span>
+                                <button
+                                    class="px-3 py-1 border border-neutral-200/20 rounded hover:bg-neutral-50">Next</button>
+                            </div>
+                            <select class="px-3 py-1 border border-neutral-200/20 rounded">
+                                <option>10 per page</option>
+                                <option>25 per page</option>
+                                <option>50 per page</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </htmlCode>
+</element>
+<element id="71f9618b-4a1e-4a0a-a234-d0ed7590743b" data-section-id="71f9618b-4a1e-4a0a-a234-d0ed7590743b">
+
+
+    <htmlcode id="el-b0ixem8z">
+        <div id="root">
+            <section id="Analytics" class="p-6">
+                <div class="grid gap-6" id="el-vjxds6y0">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="el-vqhwvsv4">
+                        <div class="bg-white border border-neutral-200/20 rounded-lg p-6" id="el-wixx6gtf">
+                            <div class="flex justify-between items-center mb-6" id="el-zr42sykk">
+                                <h3 class="text-lg font-semibold text-neutral-700" id="el-719681w6">Severity
+                                    Distribution</h3>
+                                <div class="flex items-center gap-2" id="el-fgje8gho">
+                                    <select class="text-sm border border-neutral-200/20 rounded-lg px-3 py-1"
+                                        id="el-lkrdd8jt">
+                                        <option id="el-d0drs20h">Last 7 days</option>
+                                        <option id="el-jdkix16d">Last 30 days</option>
+                                        <option id="el-xm2m1jog">Last 90 days</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="h-80" id="el-2cdef6nf">
+                                <canvas id="severityDistChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-neutral-200/20 rounded-lg p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-semibold text-neutral-700">Vulnerability Trends</h3>
+                                <div class="flex items-center gap-2">
+                                    <select class="text-sm border border-neutral-200/20 rounded-lg px-3 py-1">
+                                        <option>Weekly</option>
+                                        <option>Monthly</option>
+                                        <option>Quarterly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="h-80">
+                                <canvas id="vulnerabilityTrendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="el-5gnex72j">
+                        <div class="bg-white border border-neutral-200/20 rounded-lg p-6" id="el-orzwpf30">
+                            <h3 class="text-lg font-semibold text-neutral-700 mb-4" id="el-7x8xw476">Category
+                                Distribution</h3>
+                            <div class="h-64" id="el-lrre9des">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-neutral-200/20 rounded-lg p-6" id="el-gu5ce2op">
+                            <h3 class="text-lg font-semibold text-neutral-700 mb-4" id="el-ovivhicl">Remediation
+                                Progress</h3>
+                            <div class="h-64" id="el-akhk2uy8">
+                                <canvas id="remediationChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-neutral-200/20 rounded-lg p-6" id="el-97lgg5qm">
+                            <h3 class="text-lg font-semibold text-neutral-700 mb-4" id="el-3j5ywavr">Risk Score Trend
+                            </h3>
+                            <div class="h-64" id="el-qinjf801">
+                                <canvas id="riskTrendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-neutral-200/20 rounded-lg p-6" id="el-hto2ilcr">
+                        <div class="flex justify-between items-center mb-6" id="el-zynwp18l">
+                            <h3 class="text-lg font-semibold text-neutral-700" id="el-nwo93rsa">Historical Data</h3>
+                            <div class="flex gap-2" id="el-dc55nbq1">
+                                <button class="px-3 py-1 text-sm font-medium rounded-lg bg-blue-50 text-blue-600"
+                                    id="el-t8g9g0ht">Export Data</button>
+                                <button class="px-3 py-1 text-sm font-medium rounded-lg bg-neutral-50 text-neutral-600"
+                                    id="el-iroc9qzn">Print Report</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto" id="el-6nbhar8n">
+                            <table class="w-full" id="el-b7n0e1op">
+                                <thead id="el-b700iic2">
+                                    <tr class="text-left border-b border-neutral-200/20" id="el-p0jtp6f3">
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-db6axqzt">Date</th>
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-c8wkwh6b">Critical</th>
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-vp8vz3hy">High</th>
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-lsxizpit">Medium</th>
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-q7sj49fg">Low</th>
+                                        <th class="pb-3 font-semibold text-neutral-600" id="el-h8d0vefm">Risk Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="el-0s1aqh0g">
+                                    <tr class="border-b border-neutral-200/20" id="el-lxiqudgt">
+                                        <td class="py-3" id="el-zoh8u5b8">2024-01-20</td>
+                                        <td class="py-3 text-red-600" id="el-ej6bxwph">12</td>
+                                        <td class="py-3 text-orange-600" id="el-exmlur3t">23</td>
+                                        <td class="py-3 text-yellow-600" id="el-jrgbgb1t">45</td>
+                                        <td class="py-3 text-blue-600" id="el-l5yage26">78</td>
+                                        <td class="py-3" id="el-vjwez1qv">85</td>
+                                    </tr>
+                                    <tr class="border-b border-neutral-200/20" id="el-bknzhc4b">
+                                        <td class="py-3" id="el-i4a6p7lz">2024-01-19</td>
+                                        <td class="py-3 text-red-600" id="el-k95toscr">14</td>
+                                        <td class="py-3 text-orange-600" id="el-p6yeun9x">25</td>
+                                        <td class="py-3 text-yellow-600" id="el-kl7jsade">42</td>
+                                        <td class="py-3 text-blue-600" id="el-h0r75ftx">81</td>
+                                        <td class="py-3" id="el-zlqldd77">87</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            window.addEventListener('load', function () {
+                const chartOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false
+                };
+
+                // Initialize all charts
+                const ctx1 = document.getElementById('severityDistChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Critical', 'High', 'Medium', 'Low'],
+                        datasets: [{
+                            data: [12, 23, 45, 78],
+                            backgroundColor: ['#ef4444', '#f97316', '#eab308', '#3b82f6']
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                const ctx2 = document.getElementById('trendChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Vulnerabilities',
+                            data: [65, 59, 80, 81, 56, 55],
+                            borderColor: '#3b82f6',
+                            tension: 0.1
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                // Initialize other charts similarly...
+            });
+        </script>
+    </htmlcode>
+</element>
+<element id="b35e4cff-f2f2-4178-841d-e76351aed88c" data-section-id="b35e4cff-f2f2-4178-841d-e76351aed88c">
+
+    <htmlCode>
+        <div id="root">
+            <section id="Reports" class="p-6">
+                <div class="bg-white border border-neutral-200/20 rounded-lg overflow-hidden">
+                    <div class="p-6 border-b border-neutral-200/20">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-semibold text-neutral-700">Reports</h2>
+                            <button
+                                class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                Generate New Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-4">
+                                <h3 class="text-lg font-medium text-neutral-700">Recent Reports</h3>
+                                <span
+                                    class="ml-2 px-2 py-1 text-xs font-medium bg-blue-50 text-blue-600 rounded-full">Last
+                                    7 days</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="flex items-center justify-between p-4 border border-neutral-200/20 rounded-lg hover:bg-neutral-50">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-red-50 rounded-lg">
+                                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-sm font-medium text-neutral-700">Critical Vulnerabilities
+                                                Report</h4>
+                                            <p class="text-sm text-neutral-500">Generated on Jan 20, 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button
+                                            class="flex items-center px-3 py-1 text-sm text-neutral-600 hover:text-neutral-900">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                <path
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                                </path>
+                                            </svg>
+                                            View
+                                        </button>
+                                        <button
+                                            class="flex items-center px-3 py-1 text-sm text-neutral-600 hover:text-neutral-900">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between p-4 border border-neutral-200/20 rounded-lg hover:bg-neutral-50">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-blue-50 rounded-lg">
+                                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-sm font-medium text-neutral-700">Weekly Security Summary
+                                            </h4>
+                                            <p class="text-sm text-neutral-500">Generated on Jan 19, 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button
+                                            class="flex items-center px-3 py-1 text-sm text-neutral-600 hover:text-neutral-900">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                <path
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                                </path>
+                                            </svg>
+                                            View
+                                        </button>
+                                        <button
+                                            class="flex items-center px-3 py-1 text-sm text-neutral-600 hover:text-neutral-900">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-neutral-200/20 pt-6">
+                            <h3 class="text-lg font-medium text-neutral-700 mb-4">Scheduled Reports</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="text-left border-b border-neutral-200/20">
+                                            <th class="pb-3 font-semibold text-neutral-600">Report Name</th>
+                                            <th class="pb-3 font-semibold text-neutral-600">Frequency</th>
+                                            <th class="pb-3 font-semibold text-neutral-600">Last Generated</th>
+                                            <th class="pb-3 font-semibold text-neutral-600">Next Run</th>
+                                            <th class="pb-3 font-semibold text-neutral-600">Status</th>
+                                            <th class="pb-3 font-semibold text-neutral-600">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-neutral-200/20">
+                                            <td class="py-3">Security Overview</td>
+                                            <td class="py-3">Daily</td>
+                                            <td class="py-3">Jan 20, 2024</td>
+                                            <td class="py-3">Jan 21, 2024</td>
+                                            <td class="py-3">
+                                                <span
+                                                    class="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">Active</span>
+                                            </td>
+                                            <td class="py-3">
+                                                <button class="text-neutral-600 hover:text-neutral-900">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </htmlCode>
+</element>
+<!--<element id="ceefe1ca-5d54-4d08-86ee-a2e62c1533aa" data-section-id="ceefe1ca-5d54-4d08-86ee-a2e62c1533aa">
+
+<htmlCode>
+<div id="root">
+    <section id="Settings" class="p-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white border border-neutral-200/20 rounded-lg">
+                <div class="p-6 border-b border-neutral-200/20">
+                    <h2 class="text-xl font-semibold text-neutral-700">Settings</h2>
+                </div>
+
+                <div class="p-6 space-y-8">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-neutral-700">Scan Settings</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <label class="font-medium text-neutral-700">Automatic Scanning</label>
+                                    <p class="text-sm text-neutral-500">Enable periodic vulnerability scanning</p>
+                                </div>
+                                <div class="relative inline-block w-12 h-6">
+                                    <input type="checkbox" class="peer sr-only" id="autoScan" checked>
+                                    <label for="autoScan" class="block h-6 w-12 rounded-full bg-neutral-200 peer-checked:bg-blue-600 cursor-pointer transition-colors">
+                                        <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-6"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="font-medium text-neutral-700">Scan Frequency</label>
+                                <select class="w-full p-2 border border-neutral-200/20 rounded-lg bg-white">
+                                    <option>Every 6 hours</option>
+                                    <option>Every 12 hours</option>
+                                    <option>Daily</option>
+                                    <option>Weekly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-neutral-700">Notification Preferences</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notifyCritical" class="rounded border-neutral-300" checked>
+                                <label for="notifyCritical" class="ml-2 text-neutral-700">Critical Vulnerabilities</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notifyHigh" class="rounded border-neutral-300" checked>
+                                <label for="notifyHigh" class="ml-2 text-neutral-700">High Vulnerabilities</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notifyMedium" class="rounded border-neutral-300">
+                                <label for="notifyMedium" class="ml-2 text-neutral-700">Medium Vulnerabilities</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notifyLow" class="rounded border-neutral-300">
+                                <label for="notifyLow" class="ml-2 text-neutral-700">Low Vulnerabilities</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-neutral-700">Report Settings</h3>
+                        <div class="space-y-4">
+                            <div class="space-y-2">
+                                <label class="font-medium text-neutral-700">Default Export Format</label>
+                                <select class="w-full p-2 border border-neutral-200/20 rounded-lg bg-white">
+                                    <option>PDF</option>
+                                    <option>CSV</option>
+                                    <option>JSON</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="autoExport" class="rounded border-neutral-300">
+                                <label for="autoExport" class="ml-2 text-neutral-700">Auto-export reports after scan</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-neutral-700">API Integration</h3>
+                        <div class="space-y-2">
+                            <label class="font-medium text-neutral-700">API Key</label>
+                            <div class="flex gap-2">
+                                <input type="password" value="************************" class="flex-1 p-2 border border-neutral-200/20 rounded-lg bg-white" readonly>
+                                <button class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50">
+                                    Regenerate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-neutral-200/20 flex justify-end gap-3">
+                        <button class="px-4 py-2 text-neutral-600 border border-neutral-200/20 rounded-lg hover:bg-neutral-50">
+                            Cancel
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element> -->
+<div id="page_complete">
+<script>
+    console.log('Page complete');
+</script>
+<script src="styles/scripts1.js"></script>
+</body>
+
+</html>
