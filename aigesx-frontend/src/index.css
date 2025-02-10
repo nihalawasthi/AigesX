@@ -1,0 +1,97 @@
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+  }
+  
+  /* Webkit browsers like Chrome, Safari, newer Edge */
+  *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #666;
+    }
+  
+    /* Remove tap highlight on mobile */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+  
+    /* Improve text rendering */
+    body {
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  
+    /* Focus outline styles */
+    :focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  
+    /* Print styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+    }
+  
+    nav a.active {
+        background-color: #F3F4F6;
+        color: #111827;
+    }
+    
+    .scroll-smooth {
+        scroll-behavior: smooth;
+    }
+    
+    #menuToggle svg {
+        transition: transform 0.3s ease;
+    }
+    
+    #menuToggle.active svg {
+        transform: rotate(90deg);
+    }
+    
+    @media (max-width: 1024px) {
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+    
+        nav.show {
+            transform: translateX(0);
+        }
+    }
+    
+    .chartmax {
+      height: 20rem;
+      width: 100%;
+    }

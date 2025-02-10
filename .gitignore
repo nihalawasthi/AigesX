@@ -1,4 +1,10 @@
+# Exclude all __pycache__ folders
+__pycache__/
+
+# Exclude any .venv directory
+.venv/
+
+# Specific files to ignore
 aigesx.log
-core/__pycache__/*
 cve_data/__pycache__/*
 cve_data/NVD/*.json
