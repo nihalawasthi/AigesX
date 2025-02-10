@@ -137,8 +137,7 @@ def main():
         report_path = reporter.report_name
         HackerStyle.success("Scan completed successfully!")
         HackerStyle.info(f"Uploading report: {report_path}")
-        auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MTg0MTQ2LCJpYXQiOjE3MzkwOTc3NDYsImp0aSI6IjkzZGIxYTQ4ZGQ1NTRlZTZiN2IxZmJiMjNmNGFlZTM3IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJtb3JwaGV1cyJ9.JYMZWgv2RoVhneS6UBXLjTo_QB0iNQdOnwe_8XrV5K8"
-        upload_report(report_path, auth_token)
+        upload_report(report_path)
 
     except KeyboardInterrupt:
         logging.error("Scan interrupted by user")

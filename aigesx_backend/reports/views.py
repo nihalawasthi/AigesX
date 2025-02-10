@@ -7,7 +7,7 @@ import json
 import os
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from django.core.files.storage import default_storage
 from django.conf import settings
@@ -17,6 +17,7 @@ User = get_user_model()
 class UploadReportView(generics.CreateAPIView):
     queryset = ScanReport.objects.all()
     serializer_class = ScanReportSerializer
+    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FileUploadParser]  # Accept file uploads
 
     def post(self, request, *args, **kwargs):
