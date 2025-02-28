@@ -4,6 +4,7 @@ import random
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 from collections import Counter
+from rest_framework.response import Response
 
 VULNERABILITY_TRENDS_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 

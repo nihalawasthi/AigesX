@@ -169,13 +169,19 @@ class Scanner:
         print("Detecting network services...")
         detected_services = []
         for port in self.system_ports:
-            service_info = self.port_service_map.get(str(port))
-            if service_info:
-                detected_services.append({
-                    "port": port,
-                    "service": service_info
-                })
-        print(f"Detected services: {detected_services}")
+            try:
+                service = self.port_service_map.get(str(port), {})
+                banner = self._get_banner(port)
+                
+                if banner:
+                    version = self._parse_version(banner)
+                    service['version'] = version
+                    service['vulnerable'] = self._check_version_against_cve(version)
+                    
+                self.detected_services.append(service)
+                
+            except Exception as e:
+                self.logger.error(f"Service detection error on port {port}: {str(e)}")
         self.detected_services = detected_services
         return detected_services
 
@@ -1470,12 +1476,34 @@ class MLScanner:
         self.logger.info("Initializing feature extractor")
         return VulnerabilityFeatureExtractor()
         
+class EnhancedMLScanner(MLScanner):
     def extract_features(self, scan_data):
-        """Extract features from scan data for ML analysis"""
-        self.logger.info("Extracting features from scan data")
-        if not self.feature_extractor:
-            return []
-        return self.feature_extractor.extract_features(scan_data)
+        """Enhanced feature extraction"""
+        features = []
+        try:
+            # Network features
+            net_features = [
+                len(scan_data.get('open_ports', [])),
+                len(scan_data.get('suspicious_protocols', []))
+            ]
+            
+            # System features
+            sys_features = [
+                scan_data.get('unpatched_days', 0),
+                scan_data.get('weak_permission_count', 0)
+            ]
+            
+            # Vulnerability features
+            vuln_features = [
+                scan_data.get('risk_score', 0),
+                len(scan_data.get('critical_findings', []))
+            ]
+            
+            return np.array([net_features + sys_features + vuln_features])
+            
+        except Exception as e:
+            self.logger.error(f"Feature extraction error: {str(e)}")
+            return None
         
     def predict_vulnerabilities(self, features):
         """Predict vulnerabilities using ML model"""

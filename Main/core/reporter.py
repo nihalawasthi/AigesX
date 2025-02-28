@@ -212,6 +212,33 @@ class Reporter:
             }
         }
 
+    CATEGORY_MAP = {
+        'ssh': 'NETWORK',
+        'http': 'WEB',
+        'kernel': 'SYSTEM',
+        'driver': 'DRIVER'
+    }
+        
+    def _categorize_vulnerability(self, vuln: Dict) -> str:
+        """Improved categorization logic"""
+        description = vuln.get('description', '').lower()
+        component = vuln.get('component', '').lower()
+        
+        # Check component first
+        for key, category in self.CATEGORY_MAP.items():
+            if key in component:
+                return category
+                
+        # Check description patterns
+        if 'buffer overflow' in description:
+            return 'MEMORY'
+        if 'xss' in description or 'sql injection' in description:
+            return 'WEB'
+        if 'privilege escalation' in description:
+            return 'AUTHORIZATION'
+            
+        return 'SYSTEM'
+
 '''
 def test_environment():
     print("Testing for vulnerable ports and services...")
