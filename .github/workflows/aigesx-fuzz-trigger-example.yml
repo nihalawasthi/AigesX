@@ -1,0 +1,31 @@
+name: AigesX Fuzz Trigger Example
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  trigger-fuzz:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger AigesX fuzzing job via API
+        env:
+          AIGESX_BASE_URL: ${{ secrets.AIGESX_BASE_URL }}
+          AIGESX_USERNAME: ${{ secrets.AIGESX_USERNAME }}
+          AIGESX_PASSWORD: ${{ secrets.AIGESX_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          TOKEN=$(curl -sS -X POST "$AIGESX_BASE_URL/api/auth/token/" \
+            -H "Content-Type: application/json" \
+            -d "{\"username\":\"$AIGESX_USERNAME\",\"password\":\"$AIGESX_PASSWORD\"}" | jq -r '.access')
+
+          if [ "$TOKEN" = "null" ] || [ -z "$TOKEN" ]; then
+            echo "Failed to fetch JWT token"
+            exit 1
+          fi
+
+          curl -sS -X POST "$AIGESX_BASE_URL/api/scan/start/" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{"timeout_seconds":300,"memory_limit_mb":512,"cpu_limit":1.0}'

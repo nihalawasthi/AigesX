@@ -9,26 +9,42 @@ const TargetIntakeControls = ({
   onSourceChange,
   onUploadBinary,
   onUploadSource,
+  isUploadingBinary,
 }) => {
-  const [binaryFile, setBinaryFile] = useState(null);
+  const [binaryFileName, setBinaryFileName] = useState("");
   const [repoUrl, setRepoUrl] = useState("");
+
+  const handleBinarySelect = async (event) => {
+    const file = event.target.files?.[0] || null;
+    if (!file) {
+      setBinaryFileName("");
+      return;
+    }
+
+    setBinaryFileName(file.name);
+    try {
+      await onUploadBinary(file);
+    } finally {
+      event.target.value = "";
+    }
+  };
 
   return (
     <section id="TargetIntake" className="p-6">
       <div className="bg-white border border-neutral-200/20 rounded-lg p-6 grid gap-6 lg:grid-cols-2">
         <div className="space-y-3">
           <h3 className="text-lg font-semibold text-neutral-700">Binary Target</h3>
-          <div className="flex gap-2 items-center">
-            <input type="file" onChange={(e) => setBinaryFile(e.target.files?.[0] || null)} className="text-sm" />
-            <button
-              className="px-3 py-1 rounded bg-blue-50 text-blue-700 disabled:opacity-50"
-              onClick={() => binaryFile && onUploadBinary(binaryFile)}
-              disabled={!binaryFile}
-            >
-              Upload ELF
-            </button>
+          <div className="space-y-2">
+            <input type="file" onChange={handleBinarySelect} className="text-sm" disabled={isUploadingBinary} />
+            <p className="text-xs text-neutral-500">
+              {isUploadingBinary
+                ? `Uploading ${binaryFileName || "binary"}...`
+                : binaryFileName
+                  ? `Selected and uploaded: ${binaryFileName}`
+                  : "Select a binary and it uploads automatically."}
+            </p>
           </div>
-          <p className="text-xs text-neutral-500">ELF binaries only for MVP target intake.</p>
+          <p className="text-xs text-neutral-500">Supported: ELF, PE (.exe), and Mach-O binaries.</p>
 
           <label className="text-sm text-neutral-600 block">
             Active Binary Target
@@ -81,6 +97,7 @@ const TargetIntakeControls = ({
               ))}
             </select>
           </label>
+          <p className="text-xs text-neutral-500">If no custom corpus/seed is uploaded, AigesX auto-generates a device-stable default seed for this user.</p>
         </div>
       </div>
     </section>

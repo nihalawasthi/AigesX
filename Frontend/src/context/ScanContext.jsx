@@ -27,12 +27,14 @@ export const ScanProvider = ({ children }) => {
   const [stoppingJobId, setStoppingJobId] = useState(null);
   const [timeoutSeconds, setTimeoutSeconds] = useState(300);
   const [memoryLimitMb, setMemoryLimitMb] = useState(512);
+  const [cpuLimit, setCpuLimit] = useState(1.0);
   const [binaryArtifactId, setBinaryArtifactId] = useState(null);
   const [seedArtifactId, setSeedArtifactId] = useState(null);
   const [sourceArtifactId, setSourceArtifactId] = useState(null);
   const [error, setError] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploadingBinary, setIsUploadingBinary] = useState(false);
 
   const refreshData = async () => {
     if (!token) return;
@@ -49,6 +51,17 @@ export const ScanProvider = ({ children }) => {
       setBinaryArtifacts(binaries);
       setCorpusArtifacts(corpus);
       setSourceArtifacts(sources);
+
+      if (!binaryArtifactId && Array.isArray(binaries) && binaries.length > 0) {
+        setBinaryArtifactId(binaries[0].id);
+      }
+
+      if (!seedArtifactId && Array.isArray(corpus) && corpus.length > 0) {
+        setSeedArtifactId(corpus[0].id);
+      }
+      if (!sourceArtifactId && Array.isArray(sources) && sources.length > 0) {
+        setSourceArtifactId(sources[0].id);
+      }
       setError("");
     } catch (err) {
       setError("Failed to load scan data.");
@@ -77,6 +90,9 @@ export const ScanProvider = ({ children }) => {
         if (user?.default_memory_limit_mb) {
           setMemoryLimitMb(Number(user.default_memory_limit_mb));
         }
+        if (user?.default_cpu_limit) {
+          setCpuLimit(Number(user.default_cpu_limit));
+        }
       })
       .catch(() => {
         // Keep existing defaults if profile fetch fails.
@@ -85,6 +101,10 @@ export const ScanProvider = ({ children }) => {
 
   const runAnalysis = async () => {
     if (!token) return;
+    if (isUploadingBinary) {
+      setError("Binary upload in progress. Please wait a moment and try again.");
+      return;
+    }
     setIsGenerating(true);
     setError("");
 
@@ -92,6 +112,7 @@ export const ScanProvider = ({ children }) => {
       const startResponse = await startScanJob(token, {
         timeout_seconds: timeoutSeconds,
         memory_limit_mb: memoryLimitMb,
+        cpu_limit: cpuLimit,
         binary_artifact_id: binaryArtifactId,
         seed_artifact_id: seedArtifactId,
         source_artifact_id: sourceArtifactId,
@@ -129,7 +150,8 @@ export const ScanProvider = ({ children }) => {
 
       throw new Error("Scan job timed out");
     } catch (err) {
-      setError("Failed to run analysis.");
+      const apiError = err?.response?.data?.error || err?.response?.data?.details || err?.message;
+      setError(apiError ? `Failed to run analysis: ${apiError}` : "Failed to run analysis.");
     } finally {
       setIsGenerating(false);
     }
@@ -187,12 +209,19 @@ export const ScanProvider = ({ children }) => {
 
   const handleUploadBinary = async (file) => {
     if (!token) return;
+    setIsUploadingBinary(true);
     setError("");
     try {
-      await uploadBinaryFile(token, file);
+      const uploaded = await uploadBinaryFile(token, file);
+      if (uploaded?.id) {
+        setBinaryArtifactId(uploaded.id);
+      }
       await refreshData();
     } catch (err) {
-      setError("Failed to upload binary (ELF only).");
+      const apiError = err?.response?.data?.error || err?.response?.data?.details || err?.message;
+      setError(apiError ? `Failed to upload binary: ${apiError}` : "Failed to upload binary.");
+    } finally {
+      setIsUploadingBinary(false);
     }
   };
 
@@ -228,14 +257,17 @@ export const ScanProvider = ({ children }) => {
       stoppingJobId,
       timeoutSeconds,
       memoryLimitMb,
+      cpuLimit,
       binaryArtifactId,
       seedArtifactId,
       sourceArtifactId,
       error,
       isGenerating,
       isLoading,
+      isUploadingBinary,
       setTimeoutSeconds,
       setMemoryLimitMb,
+      setCpuLimit,
       setBinaryArtifactId,
       setSeedArtifactId,
       setSourceArtifactId,
@@ -257,12 +289,14 @@ export const ScanProvider = ({ children }) => {
       stoppingJobId,
       timeoutSeconds,
       memoryLimitMb,
+      cpuLimit,
       binaryArtifactId,
       seedArtifactId,
       sourceArtifactId,
       error,
       isGenerating,
       isLoading,
+      isUploadingBinary,
     ]
   );
 

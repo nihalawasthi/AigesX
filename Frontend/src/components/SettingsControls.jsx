@@ -6,12 +6,14 @@ const SettingsControls = ({
   security,
   timeoutSeconds,
   memoryLimitMb,
+  cpuLimit,
   seedArtifactId,
   corpusArtifacts,
   onProfileChange,
   onSecurityChange,
   onTimeoutChange,
   onMemoryChange,
+  onCpuChange,
   onSeedChange,
   onUploadCorpus,
   onSavePreferences,
@@ -145,7 +147,7 @@ const SettingsControls = ({
 
         <div className="space-y-3">
           <h3 className="text-lg font-semibold text-neutral-700">Execution Profile</h3>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-3">
             <label className="text-sm text-neutral-600">
               Timeout (s)
               <input
@@ -164,6 +166,17 @@ const SettingsControls = ({
                 className="mt-1 w-full border border-neutral-200 rounded px-2 py-1"
                 value={memoryLimitMb}
                 onChange={(e) => onMemoryChange(Number(e.target.value))}
+              />
+            </label>
+            <label className="text-sm text-neutral-600">
+              CPU Limit
+              <input
+                type="number"
+                min={0.1}
+                step={0.1}
+                className="mt-1 w-full border border-neutral-200 rounded px-2 py-1"
+                value={cpuLimit}
+                onChange={(e) => onCpuChange(Number(e.target.value))}
               />
             </label>
           </div>

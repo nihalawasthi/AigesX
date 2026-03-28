@@ -10,10 +10,12 @@ const Settings = () => {
   const {
     timeoutSeconds,
     memoryLimitMb,
+    cpuLimit,
     seedArtifactId,
     corpusArtifacts,
     setTimeoutSeconds,
     setMemoryLimitMb,
+    setCpuLimit,
     setSeedArtifactId,
     handleUploadCorpus,
     error,
@@ -71,6 +73,7 @@ const Settings = () => {
 
         setTimeoutSeconds(Number(data.default_timeout_seconds || 300));
         setMemoryLimitMb(Number(data.default_memory_limit_mb || 512));
+        setCpuLimit(Number(data.default_cpu_limit || 1.0));
         setPreferredLanguage(data.preferred_language || "en");
       } catch {
         setSavedMessage("Failed to load settings from backend.");
@@ -108,6 +111,7 @@ const Settings = () => {
       session_alerts: security.sessionAlerts,
       default_timeout_seconds: timeoutSeconds,
       default_memory_limit_mb: memoryLimitMb,
+      default_cpu_limit: cpuLimit,
     };
 
     try {
@@ -195,12 +199,14 @@ const Settings = () => {
         security={security}
         timeoutSeconds={timeoutSeconds}
         memoryLimitMb={memoryLimitMb}
+        cpuLimit={cpuLimit}
         seedArtifactId={seedArtifactId}
         corpusArtifacts={corpusArtifacts}
         onProfileChange={handleProfileChange}
         onSecurityChange={handleSecurityChange}
         onTimeoutChange={setTimeoutSeconds}
         onMemoryChange={setMemoryLimitMb}
+        onCpuChange={setCpuLimit}
         onSeedChange={setSeedArtifactId}
         onUploadCorpus={handleUploadCorpus}
         onSavePreferences={handleSavePreferences}

@@ -14,6 +14,7 @@ const TargetIntake = () => {
     handleUploadSource,
     runAnalysis,
     isGenerating,
+    isUploadingBinary,
     error,
   } = useScan();
 
@@ -29,10 +30,10 @@ const TargetIntake = () => {
           </div>
           <button
             onClick={runAnalysis}
-            disabled={isGenerating}
+            disabled={isGenerating || isUploadingBinary}
             className="px-4 py-2 rounded-lg bg-slate-900 text-white disabled:opacity-60"
           >
-            {isGenerating ? "Running..." : "Start Analysis"}
+            {isGenerating ? "Running..." : isUploadingBinary ? "Uploading Binary..." : "Start Analysis"}
           </button>
         </div>
       </section>
@@ -46,6 +47,7 @@ const TargetIntake = () => {
         onSourceChange={setSourceArtifactId}
         onUploadBinary={handleUploadBinary}
         onUploadSource={handleUploadSource}
+        isUploadingBinary={isUploadingBinary}
       />
     </Layout>
   );

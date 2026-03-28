@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ThreatLandscape from "../components/ThreatLandscape";
 
 const Landing = () => {
   return (
@@ -37,6 +38,8 @@ const Landing = () => {
           </ol>
         </div>
       </main>
+
+      <ThreatLandscape />
     </div>
   );
 };

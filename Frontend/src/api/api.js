@@ -78,6 +78,23 @@ export const fetchScanJobStatus = async (token, jobId) => {
   }
 };
 
+export const fetchScanJobLogs = async (token, jobId) => {
+  if (!token) {
+    console.error("❌ No authentication token found.");
+    throw new Error("No authentication token found.");
+  }
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}/scan/jobs/${jobId}/logs/`, {
+      headers: authHeaders(token),
+    });
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching scan job logs:", error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
 export const fetchScanJobs = async (token) => {
   if (!token) {
     console.error("❌ No authentication token found.");

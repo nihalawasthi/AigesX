@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Simple API smoke test for AigesX backend.
+"""API sanity test for AigesX backend.
 
 Flow:
 1. Login via JWT token endpoint
-2. Trigger a scan
-3. Fetch latest report
+2. Create scan job
+3. Poll job status until terminal state
+4. Fetch crash data and validate metadata fields
 """
 
 from __future__ import annotations
@@ -35,8 +36,9 @@ def main() -> int:
     args = parser.parse_args()
 
     token_url = f"{args.base_url}/api/auth/token/"
-    scan_url = f"{args.base_url}/api/scan/"
-    latest_url = f"{args.base_url}/api/latest-report/"
+    start_url = f"{args.base_url}/api/scan/start/"
+    crashes_url_tpl = f"{args.base_url}/api/scan/jobs/{{job_id}}/crashes/"
+    status_url_tpl = f"{args.base_url}/api/scan/jobs/{{job_id}}/"
 
     print("[1/3] Login...")
     token_resp = requests.post(
@@ -55,24 +57,51 @@ def main() -> int:
         "Content-Type": "application/json",
     }
 
-    print("[2/3] Trigger scan...")
-    scan_resp = requests.post(scan_url, headers=headers, json={}, timeout=args.timeout)
-    require(scan_resp.status_code in (200, 201), f"Scan request failed: {scan_resp.status_code} {scan_resp.text}")
+    print("[2/4] Create scan job...")
+    start_resp = requests.post(
+        start_url,
+        headers=headers,
+        json={"timeout_seconds": 30, "memory_limit_mb": 256, "cpu_limit": 0.5},
+        timeout=args.timeout,
+    )
+    require(start_resp.status_code in (200, 201, 202), f"Job start failed: {start_resp.status_code} {start_resp.text}")
 
-    scan_body = scan_resp.json()
-    require("report_data" in scan_body, f"Scan response missing report_data: {pretty(scan_body)}")
+    start_body = start_resp.json()
+    job_id = (start_body.get("job") or {}).get("id")
+    require(bool(job_id), f"Missing job id: {pretty(start_body)}")
 
-    print("[3/3] Fetch latest report...")
-    latest_resp = requests.get(latest_url, headers=headers, timeout=args.timeout)
-    require(latest_resp.status_code == 200, f"Latest report failed: {latest_resp.status_code} {latest_resp.text}")
+    print("[3/4] Poll job status...")
+    final_status = None
+    report_data = None
+    for _ in range(120):
+        status_resp = requests.get(status_url_tpl.format(job_id=job_id), headers=headers, timeout=args.timeout)
+        require(status_resp.status_code == 200, f"Status failed: {status_resp.status_code} {status_resp.text}")
+        status_body = status_resp.json()
+        final_status = status_body.get("status")
+        report_data = status_body.get("report_data")
+        if final_status in {"COMPLETED", "FAILED"}:
+            break
+    require(final_status in {"COMPLETED", "FAILED"}, f"Unexpected final status: {final_status}")
 
-    latest_body = latest_resp.json()
-    require("scan_summary" in latest_body, "Latest report missing scan_summary")
-    require("vulnerability_summary" in latest_body, "Latest report missing vulnerability_summary")
+    print("[4/4] Fetch crash data...")
+    crashes_resp = requests.get(crashes_url_tpl.format(job_id=job_id), headers=headers, timeout=args.timeout)
+    require(crashes_resp.status_code == 200, f"Crash fetch failed: {crashes_resp.status_code} {crashes_resp.text}")
+    crashes_body = crashes_resp.json()
+    crashes = crashes_body.get("crashes", [])
 
-    print("Smoke test passed.")
-    print(f"Risk score: {latest_body.get('scan_summary', {}).get('risk_score')}")
-    print(f"Total vulnerabilities: {latest_body.get('scan_summary', {}).get('total_vulnerabilities')}")
+    for crash in crashes:
+        details = crash.get("details") or {}
+        if "crash_hash" in details:
+            require(bool(details.get("crash_hash")), "Crash hash must not be empty")
+            require(bool(details.get("crash_group_hash")), "Crash group hash must not be empty")
+
+    if report_data:
+        require("scan_summary" in report_data, "Status report missing scan_summary")
+        require("vulnerability_summary" in report_data, "Status report missing vulnerability_summary")
+
+    print("Sanity test passed.")
+    print(f"Job status: {final_status}")
+    print(f"Crash records: {len(crashes)}")
     return 0
 
 

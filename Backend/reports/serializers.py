@@ -2,7 +2,7 @@ import json
 import os
 from django.conf import settings
 from rest_framework import serializers
-from .models import ScanJob, ScanReport
+from .models import CrashArtifact, ScanJob, ScanReport
 
 class ScanReportSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +15,10 @@ class ScanJobSerializer(serializers.ModelSerializer):
     crash_count = serializers.SerializerMethodField()
 
     def get_crash_count(self, obj):
+        crash_count = CrashArtifact.objects.filter(job=obj).count()
+        if crash_count:
+            return crash_count
+
         if not obj.report:
             return None
 
@@ -37,6 +41,7 @@ class ScanJobSerializer(serializers.ModelSerializer):
             "error",
             "timeout_seconds",
             "memory_limit_mb",
+            "cpu_limit",
             "binary_artifact_id",
             "seed_artifact_id",
             "source_artifact_id",

@@ -24,6 +24,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             "session_alerts",
             "default_timeout_seconds",
             "default_memory_limit_mb",
+            "default_cpu_limit",
         ]
 
     def validate_default_timeout_seconds(self, value):
@@ -31,6 +32,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def validate_default_memory_limit_mb(self, value):
         return max(64, value)
+
+    def validate_default_cpu_limit(self, value):
+        return max(0.1, value)
 
 
 class ChangePasswordSerializer(serializers.Serializer):

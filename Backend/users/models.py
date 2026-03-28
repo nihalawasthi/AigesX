@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
     session_alerts = models.BooleanField(default=True)
     default_timeout_seconds = models.PositiveIntegerField(default=300)
     default_memory_limit_mb = models.PositiveIntegerField(default=512)
+    default_cpu_limit = models.FloatField(default=1.0)
 
     groups = models.ManyToManyField(Group, related_name="customuser_set", blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name="customuser_set", blank=True)
