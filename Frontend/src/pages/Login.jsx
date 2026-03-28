@@ -27,13 +27,15 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        <input type="text" name="username" placeholder="Username" onChange={handleChange} className="w-full border rounded p-2 mb-2" />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} className="w-full border rounded p-2 mb-2" />
-        <button onClick={handleLogin} className="w-full bg-blue-500 text-white p-2 rounded">Login</button>
+    <div className="min-h-screen bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#334155] flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-7">
+        <p className="text-xs uppercase tracking-wider text-slate-500">AigesX Platform</p>
+        <h2 className="text-2xl font-bold mt-1 text-slate-800">Fuzzing-as-a-Service Login</h2>
+        <p className="text-sm text-slate-500 mt-1 mb-5">Access target intake, execution queue, and vulnerability findings.</p>
+        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+        <input type="text" name="username" placeholder="Username" onChange={handleChange} className="w-full border border-slate-200 rounded p-2 mb-2" />
+        <input type="password" name="password" placeholder="Password" onChange={handleChange} className="w-full border border-slate-200 rounded p-2 mb-3" />
+        <button onClick={handleLogin} className="w-full bg-slate-900 text-white p-2 rounded hover:bg-slate-800">Login</button>
       </div>
     </div>
   );

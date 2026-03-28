@@ -1,32 +1,25 @@
 from __future__ import annotations
 
+import datetime
+import json
 from typing import Any
 
+from .target_cve_correlation import correlate_target_with_cves
 
-def run_full_scan() -> tuple[dict[str, Any], str]:
+
+def run_full_scan(*, binary_artifact=None, source_artifact=None) -> tuple[dict[str, Any], str]:
     """
-    Execute a full system scan and return:
+    Execute target-oriented CVE correlation scan and return:
     - report data as dict
     - generated report file name
     """
-    from scan_engine.core.reporter import Reporter
-    from scan_engine.core.scanner import AutomatedScannerEngine, Scanner
+    report_data = correlate_target_with_cves(
+        binary_artifact=binary_artifact,
+        source_artifact=source_artifact,
+    )
 
-    scanner = Scanner()
-    basic_vulnerabilities = scanner.scan_system() or []
+    report_name = f"{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}_report.json"
+    with open(report_name, "w", encoding="utf-8") as report_file:
+        json.dump(report_data, report_file, indent=4)
 
-    automated_scanner = AutomatedScannerEngine()
-    deep_scan_results = automated_scanner.deep_system_scan()
-
-    if isinstance(deep_scan_results, list):
-        deep_scan_vulnerabilities = deep_scan_results
-    elif isinstance(deep_scan_results, dict):
-        deep_scan_vulnerabilities = deep_scan_results.get("vulnerabilities", [])
-    else:
-        deep_scan_vulnerabilities = []
-
-    all_vulnerabilities = basic_vulnerabilities + deep_scan_vulnerabilities
-
-    reporter = Reporter(all_vulnerabilities)
-    report_data = reporter.generate_detailed_report()
-    return report_data, reporter.report_name
+    return report_data, report_name

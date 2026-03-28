@@ -1,6 +1,8 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Summary = ({ report }) => {
+  const { t } = useLanguage();
   if (!report) return <p>Loading...</p>;
 
   return (
@@ -15,7 +17,7 @@ const Summary = ({ report }) => {
             </svg>
           </div>
           <div className="ml-4">
-            <p className="mb-2 text-sm font-medium text-neutral-600">Critical</p>
+            <p className="mb-2 text-sm font-medium text-neutral-600">{t("severeCritical")}</p>
             <p className="text-lg font-semibold text-neutral-700">{report.vulnerability_summary.by_severity.CRITICAL || 0}</p>
           </div>
         </div>
@@ -28,7 +30,7 @@ const Summary = ({ report }) => {
             </svg>
           </div>
           <div className="ml-4">
-            <p className="mb-2 text-sm font-medium text-neutral-600">High</p>
+            <p className="mb-2 text-sm font-medium text-neutral-600">{t("severeHigh")}</p>
             <p className="text-lg font-semibold text-neutral-700">{report.vulnerability_summary.by_severity.HIGH || 0}</p>
           </div>
         </div>
@@ -41,7 +43,7 @@ const Summary = ({ report }) => {
             </svg>
           </div>
           <div className="ml-4">
-            <p className="mb-2 text-sm font-medium text-neutral-600">Medium</p>
+            <p className="mb-2 text-sm font-medium text-neutral-600">{t("severeMedium")}</p>
             <p className="text-lg font-semibold text-neutral-700">{report.vulnerability_summary.by_severity.MEDIUM || 0}</p>
           </div>
         </div>
@@ -54,7 +56,7 @@ const Summary = ({ report }) => {
             </svg>
           </div>
           <div className="ml-4">
-            <p className="mb-2 text-sm font-medium text-neutral-600">Low</p>
+            <p className="mb-2 text-sm font-medium text-neutral-600">{t("severeLow")}</p>
             <p className="text-lg font-semibold text-neutral-700">{report.vulnerability_summary.by_severity.LOW || 0}</p>
           </div>
         </div>
@@ -64,22 +66,22 @@ const Summary = ({ report }) => {
       <div className="grid gap-6 mb-8 md:grid-cols-2">
         {/* System Information */}
         <div className="bg-white p-6 border border-neutral-200/20 rounded-lg">
-          <h3 className="text-lg font-semibold text-neutral-700 mb-4">System Information</h3>
+          <h3 className="text-lg font-semibold text-neutral-700 mb-4">{t("analysisContext")}</h3>
           <div className="grid gap-4">
             <div className="flex justify-between border-b border-neutral-200/20 pb-2">
-              <span className="text-neutral-600">Platform</span>
+              <span className="text-neutral-600">{t("targetPlatform")}</span>
               <span className="font-medium">{report.scan_summary.system_info.platform || "N/A"}</span>
             </div>
             <div className="flex justify-between border-b border-neutral-200/20 pb-2">
-              <span className="text-neutral-600">Version</span>
+              <span className="text-neutral-600">{t("version")}</span>
               <span className="font-medium">{report.scan_summary.system_info.version || "N/A"}</span>
             </div>
             <div className="flex justify-between border-b border-neutral-200/20 pb-2">
-              <span className="text-neutral-600">Processor</span>
+              <span className="text-neutral-600">{t("processor")}</span>
               <span className="font-medium">{report.scan_summary.system_info.machine || "N/A"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-600">Architecture</span>
+              <span className="text-neutral-600">{t("architecture")}</span>
               <span className="font-medium">{report.scan_summary.system_info.architecture || "N/A"}</span>
             </div>
           </div>
@@ -87,12 +89,12 @@ const Summary = ({ report }) => {
 
         {/* Risk Score */}
         <div className="bg-white p-6 border border-neutral-200/20 rounded-lg flex flex-col items-center">
-          <h3 className="text-lg font-semibold text-neutral-700 mb-4">Risk Score</h3>
+          <h3 className="text-lg font-semibold text-neutral-700 mb-4">{t("overallRiskScore")}</h3>
           <div className="relative">
             <div className="flex items-center justify-center w-32 h-32 rounded-full border-8 border-red-500">
               <span className="text-3xl font-bold text-neutral-700">{report.scan_summary.risk_score || "N/A"}</span>
             </div>
-            <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-neutral-600">Risk</span>
+            <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-neutral-600">{t("risk")}</span>
           </div>
         </div>
       </div>
