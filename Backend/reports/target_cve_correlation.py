@@ -116,67 +116,6 @@ def _load_seed_inputs(seed_artifact, max_inputs: int = 16) -> list[bytes]:
     return inputs or [b"A" * 32, b"%x%n" * 8, b"\x00" * 64]
 
 
-def _mutate_seed_inputs(seed_inputs: list[bytes], max_mutations: int = 64) -> list[bytes]:
-    """Generate deterministic, low-cost mutations to increase crash surface."""
-    if not seed_inputs:
-        return []
-
-    mutations: list[bytes] = []
-    seen: set[bytes] = set()
-
-    def add_candidate(candidate: bytes) -> None:
-        if not candidate:
-            return
-        clipped = candidate[:8192]
-        if clipped in seen:
-            return
-        seen.add(clipped)
-        mutations.append(clipped)
-
-    interesting_tokens = [
-        b"%x%x%x%x",
-        b"%n%n%n%n",
-        b"../../../../etc/passwd",
-        b"A" * 1024,
-        b"\x00" * 1024,
-        b"\xff" * 1024,
-    ]
-
-    for base in seed_inputs:
-        if len(mutations) >= max_mutations:
-            break
-
-        add_candidate(base)
-        add_candidate(base + b"\n")
-        add_candidate(base + b"\x00")
-        add_candidate(base * 2)
-        add_candidate(base[: max(1, len(base) // 2)])
-        add_candidate(base[::-1])
-
-        if base:
-            flip_idx = len(base) // 2
-            flipped = bytearray(base)
-            flipped[flip_idx] ^= 0xFF
-            add_candidate(bytes(flipped))
-
-        for token in interesting_tokens:
-            add_candidate(base + token)
-            add_candidate(token + base)
-
-        # Single-byte substitution sweep over up to first 16 bytes.
-        for idx in range(min(16, len(base))):
-            for value in (0x00, 0x7F, 0x80, 0xFF):
-                mutated = bytearray(base)
-                mutated[idx] = value
-                add_candidate(bytes(mutated))
-                if len(mutations) >= max_mutations:
-                    break
-            if len(mutations) >= max_mutations:
-                break
-
-    return mutations[:max_mutations]
-
-
 def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -406,10 +345,8 @@ def _extract_crash_artifacts(binary_artifact, seed_artifact, timeout_seconds: in
         return []
 
     seed_inputs = _load_seed_inputs(seed_artifact=seed_artifact)
-    candidate_inputs = _mutate_seed_inputs(seed_inputs, max_mutations=64) or seed_inputs
     crash_artifacts: list[dict[str, Any]] = []
     seen_hashes: set[str] = set()
-    max_crashes = max(5, int(os.getenv("AIGESX_MAX_CRASHES", "30")))
 
     # AFL++ primary engine integration (if available), then direct execution fallback.
     for afl_crash in _run_aflpp_campaign(binary_path=binary_path, seed_inputs=seed_inputs, timeout_seconds=timeout_seconds):
@@ -437,9 +374,7 @@ def _extract_crash_artifacts(binary_artifact, seed_artifact, timeout_seconds: in
             }
         )
 
-    for idx, payload in enumerate(candidate_inputs, start=1):
-        if len(crash_artifacts) >= max_crashes:
-            break
+    for idx, payload in enumerate(seed_inputs, start=1):
         result = _run_binary_with_input(
             binary_path=binary_path,
             payload=payload,

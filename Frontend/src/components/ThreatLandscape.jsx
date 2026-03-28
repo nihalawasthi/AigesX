@@ -7,73 +7,37 @@ Chart.register(...registerables);
 
 const API_BASE_URL = "http://127.0.0.1:8000/api";
 
-const FALLBACK_TREND = {
-  labels: ["CWE-79", "CWE-89", "CWE-787", "CWE-22", "CWE-125", "CWE-352"],
-  values: [43, 37, 34, 28, 22, 18],
-};
-
-const FALLBACK_RISK = {
-  labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  values: [62, 67, 71, 68, 74, 70, 66],
-};
-
 const ThreatLandscape = () => {
   const [trendData, setTrendData] = useState({ labels: [], datasets: [] });
   const [riskScoreData, setRiskScoreData] = useState({ labels: [], datasets: [] });
 
   useEffect(() => {
-    const setTrendFromPayload = (labels, values) => {
-      const filteredData = labels
-        .map((label, index) => ({ label, value: values[index] || 0 }))
-        .filter((item) => !item.label.includes("CWE-NVD") && !item.label.includes("CWE-Other"))
-        .sort((a, b) => b.value - a.value);
-
-      const finalData = filteredData.length
-        ? filteredData
-        : FALLBACK_TREND.labels.map((label, index) => ({ label, value: FALLBACK_TREND.values[index] }));
-
-      setTrendData({
-        labels: finalData.map((item) => item.label),
-        datasets: [
-          {
-            label: "Global CWE Trend",
-            data: finalData.map((item) => item.value),
-            backgroundColor: ["#ef4444", "#f97316", "#eab308", "#3b82f6", "#10b981", "#8b5cf6"],
-            borderWidth: 2,
-            borderColor: "#fff",
-          },
-        ],
-      });
-    };
-
-    const setRiskFromPayload = (labels, values) => {
-      const safeLabels = labels.length ? labels : FALLBACK_RISK.labels;
-      const safeValues = values.length ? values : FALLBACK_RISK.values;
-
-      setRiskScoreData({
-        labels: safeLabels,
-        datasets: [
-          {
-            label: "Cyber Risk Index",
-            data: safeValues,
-            borderColor: "#ef4444",
-            backgroundColor: "rgba(239, 68, 68, 0.18)",
-            borderWidth: 2,
-            tension: 0.3,
-          },
-        ],
-      });
-    };
-
     axios
       .get(`${API_BASE_URL}/vulnerability-trends/`)
       .then((res) => {
         const labels = Array.isArray(res?.data?.labels) ? res.data.labels : [];
         const values = Array.isArray(res?.data?.values) ? res.data.values : [];
-        setTrendFromPayload(labels, values);
+
+        const filteredData = labels
+          .map((label, index) => ({ label, value: values[index] || 0 }))
+          .filter((item) => !item.label.includes("CWE-NVD") && !item.label.includes("CWE-Other"))
+          .sort((a, b) => b.value - a.value);
+
+        setTrendData({
+          labels: filteredData.map((item) => item.label),
+          datasets: [
+            {
+              label: "Global CWE Trend",
+              data: filteredData.map((item) => item.value),
+              backgroundColor: ["#ef4444", "#f97316", "#eab308", "#3b82f6", "#10b981", "#8b5cf6"],
+              borderWidth: 2,
+              borderColor: "#fff",
+            },
+          ],
+        });
       })
       .catch(() => {
-        setTrendFromPayload([], []);
+        setTrendData({ labels: [], datasets: [] });
       });
 
     axios
@@ -81,10 +45,23 @@ const ThreatLandscape = () => {
       .then((res) => {
         const labels = Array.isArray(res?.data?.labels) ? res.data.labels : [];
         const values = Array.isArray(res?.data?.values) ? res.data.values : [];
-        setRiskFromPayload(labels, values);
+
+        setRiskScoreData({
+          labels,
+          datasets: [
+            {
+              label: "Cyber Risk Index",
+              data: values,
+              borderColor: "#ef4444",
+              backgroundColor: "rgba(239, 68, 68, 0.18)",
+              borderWidth: 2,
+              tension: 0.3,
+            },
+          ],
+        });
       })
       .catch(() => {
-        setRiskFromPayload([], []);
+        setRiskScoreData({ labels: [], datasets: [] });
       });
   }, []);
 

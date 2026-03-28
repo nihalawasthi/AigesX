@@ -111,7 +111,7 @@ def execute_scan_job(job_id):
             binary_artifact=binary_artifact,
             source_artifact=job.source_artifact,
             seed_artifact=job.seed_artifact,
-            timeout_seconds=min(900, max(10, int(job.timeout_seconds or 120))),
+            timeout_seconds=min(30, max(3, int(job.timeout_seconds or 5))),
             memory_limit_mb=max(64, int(job.memory_limit_mb or 512)),
             cpu_limit=max(0.1, float(job.cpu_limit or 1.0)),
         )
