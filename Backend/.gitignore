@@ -1,0 +1,61 @@
+# Exclude all __pycache__ folders
+__pycache__/
+
+# Exclude any .venv directory
+.venv/
+*/migrations/*
+*/migrations/
+# Specific files to ignore
+aigesx.log
+*.log
+cve_data/__pycache__/*
+cve_data/NVD/*.json
+# Ignore NVD JSON files
+*.json
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore Python files
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ignore Django
+*.sqlite3
+*.sqlite
+db.sqlite3
+
+# Ignore pytest
+.pytest_cache/
+.coverage
+
+# Ignore node_modules
+node_modules/

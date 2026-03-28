@@ -44,8 +44,11 @@ npm run dev
 
 ## Main Report APIs
 
-- POST /api/scan/
+- POST /api/scan/start/
+- GET /api/scan/jobs/<job_id>/
 - GET /api/latest-report/
+
+Note: `POST /api/scan/` is retained as a synchronous compatibility endpoint.
 
 ## API Smoke Test
 
